@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.NotesPage"
+             Title="Notes" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" 
+                     Clicked="OnNoteAddedClicked" />
+    </ContentPage.ToolbarItems>
+    <!-- Scroll view for the list -->
+    <ScrollView Margin="10">
+        
+        <!-- The list containing all the notes -->
+        <ListView x:Name="listView"
+              ItemSelected="OnListViewItemSelected"
+              RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!-- Frame to give each note a background -->
+                        <Frame BackgroundColor="LightGray" 
+                               Margin="5 10 5 0" 
+                               CornerRadius="6">
+                            
+                            <!-- Seperating the image from the text -->
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <!-- Note image -->
+                                <Image Source="Assets/Images/note.png" 
+                                   VerticalOptions="CenterAndExpand" 
+                                   HorizontalOptions="CenterAndExpand"
+                                   Margin="2"/>
+                                
+                                <!-- The title and date -->
+                                <StackLayout Grid.Column="1" Orientation="Vertical" 
+                                             HorizontalOptions="Start" VerticalOptions="Start">
+                                    <Label Text="{Binding Title}" 
+                                           TextColor="DarkSlateGray"
+                                       FontSize="Large"
+                                       HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
+                                    <Label Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
+                                           TextColor="DarkCyan"
+                                       FontSize="Small"
+                                       HorizontalOptions="Start" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
+</ContentPage>
