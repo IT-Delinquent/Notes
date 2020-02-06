@@ -4,8 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Notes.App">
+             x:Class="Notes.App" >
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#2980b9" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -36,11 +36,9 @@ namespace Notes
                 return;
             }
 
-
             // Create a new file path and save the data
             var filename = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
             File.WriteAllText(filename, saveData);
-
 
             //Close the new note after saving (might change this to leave the note visible and just save...)
             await Navigation.PopAsync();

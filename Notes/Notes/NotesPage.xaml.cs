@@ -21,17 +21,53 @@ namespace Notes
         }
 
         /// <summary>
-        /// Runs once at the appearance of the application
+        /// Holds the notes in a list
+        /// </summary>
+        private List<Note> _notes = new List<Note>();
+
+        /// <summary>
+        /// Public accessor and modifier for the notes list
+        /// </summary>
+        public List<Note> Notes
+        {
+            get { return _notes; }
+            set 
+            { 
+                _notes = value;
+            }
+        }
+
+        /// <summary>
+        /// Shows the correct view (either the listview or the emptyview)
+        /// </summary>
+        private void ShowCorrectView()
+        {
+            if (Notes.Count <= 0)
+            {
+                //Show empty view
+                listView.IsVisible = false;
+                emptyview.IsVisible = true;
+            }
+            else
+            {
+                //Show notes view
+                listView.IsVisible = true;
+                emptyview.IsVisible = false;
+            }
+        }
+
+        /// <summary>
+        /// Runs everytime the page is displayed
         /// </summary>
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            //Create a list to hold the notes
-            List<Note> notes = new List<Note>();
-
             //Look for all the note files in the application path
             var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
+
+            //Clear the notes for overriding
+            Notes.Clear();
 
             foreach (var filename in files)
             {
@@ -42,7 +78,7 @@ namespace Notes
                 int titleLocation = noteData.IndexOf(':');
 
                 //Add a new note to the notes list
-                notes.Add(new Note
+                Notes.Add(new Note
                 {
                     Filename = filename,
                     //Build the title from 0 to the title seperator location
@@ -53,8 +89,16 @@ namespace Notes
                 });
             }
 
-            //Assign a source for the listview - ordered by date (newest first)
-            listView.ItemsSource = (from s in notes orderby s.Date descending select s).ToList();
+            ShowCorrectView();
+
+            //Only update the list if its visible
+            if (listView.IsVisible)
+            {
+                //Assign a source for the listview - ordered by date (newest first)
+                listView.ItemsSource = null;
+                listView.ItemsSource = (from s in Notes orderby s.Date descending select s).ToList();
+            }
+            
         }
 
         /// <summary>

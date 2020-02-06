@@ -36,11 +36,9 @@ namespace Notes
                 return;
             }
 
-            
             // Update the note file
             File.WriteAllText(note.Filename, saveData);
             
-
             //Closes the note that was being edited
             await Navigation.PopAsync();
         }
@@ -78,6 +76,11 @@ namespace Notes
                 {
                     //Delete it if it exists
                     File.Delete(note.Filename);
+                }
+                else
+                {
+                    await DisplayAlert("Error", "There was an error", "OK");
+
                 }
                 //Close the note page that you have just deleted
                 await Navigation.PopAsync();

@@ -5,53 +5,89 @@
              Title="Notes" >
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="+" 
-                     Clicked="OnNoteAddedClicked" />
+                     Clicked="OnNoteAddedClicked"
+                     />
     </ContentPage.ToolbarItems>
-    <!-- Scroll view for the list -->
-    <ScrollView Margin="10">
+    <!-- The "master" grid -->
+    <Grid
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
         
-        <!-- The list containing all the notes -->
-        <ListView x:Name="listView"
+        <!-- Scroll view for the list -->
+        <ScrollView Margin="10" 
+                VerticalOptions="FillAndExpand"
+                IsVisible="True">
+
+            <!-- The list containing all the notes -->
+            <ListView x:Name="listView"
               ItemSelected="OnListViewItemSelected"
               RowHeight="100">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <!-- Frame to give each note a background -->
-                        <Frame BackgroundColor="LightGray" 
-                               Margin="5 10 5 0" 
-                               CornerRadius="6">
-                            
-                            <!-- Seperating the image from the text -->
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <!-- Note image -->
-                                <Image Source="Assets/Images/note.png" 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <!-- Frame to give each note a background -->
+                            <Frame BackgroundColor="LightGray" 
+                               CornerRadius="6"
+                               Margin="5, 5, 10 ,5">
+
+                                <!-- Seperating the image from the text -->
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Note image -->
+                                    <Image Source="Assets/Images/note.png" 
                                    VerticalOptions="CenterAndExpand" 
                                    HorizontalOptions="CenterAndExpand"
                                    Margin="2"/>
-                                
-                                <!-- The title and date -->
-                                <StackLayout Grid.Column="1" Orientation="Vertical" 
+
+                                    <!-- The title and date -->
+                                    <StackLayout Grid.Column="1" Orientation="Vertical" 
                                              HorizontalOptions="Start" VerticalOptions="Start">
-                                    <Label Text="{Binding Title}" 
+                                        <Label Text="{Binding Title}" 
                                            TextColor="DarkSlateGray"
                                        FontSize="Large"
                                        HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
-                                    <Label Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
+                                        <Label Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
                                            TextColor="DarkCyan"
                                        FontSize="Small"
                                        HorizontalOptions="Start" VerticalOptions="Center"/>
-                                </StackLayout>
-                            </Grid>
-                        </Frame>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ScrollView>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+
+        <!-- Display for an empty list -->
+        <Frame x:Name="emptyview"
+            BackgroundColor="Transparent"
+        HorizontalOptions="FillAndExpand" 
+        VerticalOptions="Fill"
+        IsVisible="False">
+            <Grid>
+                
+                <!-- Up arrow -->
+                <Image Source="Assets/Images/uparrow.png" 
+                       VerticalOptions="Start"
+                       HorizontalOptions="End"
+                       HeightRequest="60"
+                       Margin="0, 0, -20, 0"
+                       >
+                </Image>
+                
+                <!-- Cocktail -->
+                <StackLayout Orientation="Vertical"
+                         HorizontalOptions="CenterAndExpand"
+                         VerticalOptions="CenterAndExpand">
+                    <Label Text="Nothing to show!" FontSize="Title"/>
+                    <Image Source="Assets/Images/cocktail.png"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
 </ContentPage>
