@@ -2,21 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Notes.NewNotePage"
-             Title="New Note">
+             Title="New Note"
+             BackgroundColor="#22272c">
+
     <StackLayout Margin="20">
-        
+
         <!-- Title editor -->
-        <Editor Placeholder="Enter your title" 
+        <Editor Placeholder="Enter your title"
                 Text="{Binding Title}"
                 MaxLength="20"
                 FontSize="Large" />
-        
+
         <!-- Text editor -->
         <Editor Placeholder="Enter your note"
                 Text="{Binding Text}"
                 VerticalOptions="FillAndExpand"
                 FontSize="Body" />
-        
+
         <!-- Save and Cancel buttons -->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -27,7 +29,7 @@
                     Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
                     Text="Cancel"
-                    Clicked="OnCancelButtonClicked"/>
+                    Clicked="OnCancelButtonClicked" />
         </Grid>
     </StackLayout>
 </ContentPage>

@@ -4,11 +4,42 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Notes.App" >
+             x:Class="Notes.App">
     <Application.Resources>
         <ResourceDictionary>
+
+            <!-- Styles the nav bar -->
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="#2980b9" />
+                <Setter Property="BarBackgroundColor" Value="#41464c" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <!-- Styles the editors -->
+            <Style TargetType="Editor">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="PlaceholderColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="#1f2327" />
+            </Style>
+
+            <!-- Styles the default buttons -->
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#41464c" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <!-- Styles the floating action buttons -->
+            <Style TargetType="Button" x:Key="FloatingActionButton">
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="CornerRadius" Value="50" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="WidthRequest" Value="70" />
+                <Setter Property="BackgroundColor" Value="#41464c" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <!-- Styles the labels -->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

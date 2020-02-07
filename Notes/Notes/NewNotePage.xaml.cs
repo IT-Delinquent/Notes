@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.IO;
 using Xamarin.Forms;
-using Notes.Models;
 
 namespace Notes
 {
@@ -23,7 +23,7 @@ namespace Notes
         /// </summary>
         /// <param name="sender">The object that triggered the event</param>
         /// <param name="e">The arguments sent with the event</param>
-        async void OnSaveButtonClicked(object sender, EventArgs e)
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             Note note = (Note)BindingContext;
 
@@ -49,7 +49,7 @@ namespace Notes
         /// </summary>
         /// <param name="sender">The object that triggered the event</param>
         /// <param name="e">The arguments sent with the event</param>
-        async void OnCancelButtonClicked(object sender, EventArgs e)
+        private async void OnCancelButtonClicked(object sender, EventArgs e)
         {
             //Close the new note and don't save it
             await Navigation.PopAsync();

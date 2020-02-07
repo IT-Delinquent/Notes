@@ -2,28 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Notes.EditNotePage"
-             Title="Edit Note">
-    
+             Title="Edit Note"
+             BackgroundColor="#22272c">
+
     <StackLayout Margin="20">
-        
+
         <!-- Title editor -->
-        <Editor Placeholder="Enter your title" 
+        <Editor Placeholder="Enter your title"
                 Text="{Binding Title}"
                 MaxLength="20"
-                FontSize="Large"/>
-        
+                FontSize="Large" />
+
         <!-- Text editor -->
         <Editor Placeholder="Enter your note"
                 Text="{Binding Text}"
                 VerticalOptions="FillAndExpand"
-                FontSize="Body"/>
-        
+                FontSize="Body" />
+
         <!-- Date information-->
-        <StackLayout Orientation="Horizontal" >
-            <Label Text="Created:" VerticalOptions="Center"/>
-            <Label Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}" VerticalOptions="Center"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Created:"
+                   VerticalOptions="Center" />
+            <Label Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
+                   VerticalOptions="Center" />
         </StackLayout>
-        
+
         <!-- Save and delete button-->
         <Grid>
             <Grid.ColumnDefinitions>
@@ -34,7 +37,7 @@
                     Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
                     Text="Delete"
-                    Clicked="OnDeleteButtonClicked"/>
+                    Clicked="OnDeleteButtonClicked" />
         </Grid>
     </StackLayout>
 </ContentPage>

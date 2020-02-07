@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.IO;
 using Xamarin.Forms;
-using Notes.Models;
 
 namespace Notes
 {
@@ -23,7 +23,7 @@ namespace Notes
         /// </summary>
         /// <param name="sender">The object that triggered the event</param>
         /// <param name="e">The arguments sent with the event</param>
-        async void OnSaveButtonClicked(object sender, EventArgs e)
+        private async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             Note note = (Note)BindingContext;
 
@@ -38,7 +38,7 @@ namespace Notes
 
             // Update the note file
             File.WriteAllText(note.Filename, saveData);
-            
+
             //Closes the note that was being edited
             await Navigation.PopAsync();
         }
@@ -48,7 +48,7 @@ namespace Notes
         /// </summary>
         /// <param name="sender">The object that triggered the event</param>
         /// <param name="e">The arguments sent with the event</param>
-        async void OnDeleteButtonClicked(object sender, EventArgs e)
+        private async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             Note note = (Note)BindingContext;
 
@@ -62,7 +62,7 @@ namespace Notes
 
             //Checking if the input on the prompt was correct
             if (result != note.Title)
-            {                
+            {
                 //Dont delete the note
                 await DisplayAlert("Incorrect", "Your note has not been deleted", "OK");
                 return;
@@ -80,7 +80,6 @@ namespace Notes
                 else
                 {
                     await DisplayAlert("Error", "There was an error", "OK");
-
                 }
                 //Close the note page that you have just deleted
                 await Navigation.PopAsync();

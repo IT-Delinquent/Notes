@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Notes.Models
 {
@@ -8,7 +6,7 @@ namespace Notes.Models
     /// A class for holding information about a note
     /// </summary>
     public class Note
-    {   
+    {
         /// <summary>
         /// The filename used to store the note
         /// </summary>

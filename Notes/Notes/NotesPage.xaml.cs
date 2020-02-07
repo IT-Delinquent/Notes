@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Notes.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xamarin.Forms;
-using Notes.Models;
 
 namespace Notes
 {
@@ -31,8 +31,8 @@ namespace Notes
         public List<Note> Notes
         {
             get { return _notes; }
-            set 
-            { 
+            set
+            {
                 _notes = value;
             }
         }
@@ -84,7 +84,7 @@ namespace Notes
                     //Build the title from 0 to the title seperator location
                     Title = noteData.Substring(0, titleLocation),
                     //Build the text from the title seperator plus 1 (take out the seperator)
-                    Text = noteData.Substring( noteData.IndexOf(':') + 1),
+                    Text = noteData.Substring(noteData.IndexOf(':') + 1),
                     Date = File.GetCreationTime(filename)
                 });
             }
@@ -98,7 +98,6 @@ namespace Notes
                 listView.ItemsSource = null;
                 listView.ItemsSource = (from s in Notes orderby s.Date descending select s).ToList();
             }
-            
         }
 
         /// <summary>
@@ -106,7 +105,7 @@ namespace Notes
         /// </summary>
         /// <param name="sender">The object that triggered the event</param>
         /// <param name="e">The arguments sent with the event</param>
-        async void OnNoteAddedClicked(object sender, EventArgs e)
+        private async void OnNoteAddedClicked(object sender, EventArgs e)
         {
             //Push a new NewNotePage page
             await Navigation.PushAsync(new NewNotePage
@@ -121,7 +120,7 @@ namespace Notes
         /// </summary>
         /// <param name="sender">The object that triggered the event</param>
         /// <param name="e">The arguments sent with the event</param>
-        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             //Checks that an item is actually selected
             if (e.SelectedItem != null)

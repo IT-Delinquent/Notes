@@ -84,19 +84,14 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\cocktail.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Notes\Notes.csproj">
       <Project>{20049CB1-0A8C-4D47-90D4-566D7FFFCF9A}</Project>
       <Name>Notes</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\cocktail.png" />
     <AndroidResource Include="Resources\drawable\note.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\uparrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
