@@ -3,8 +3,14 @@
     x:Class="Notes.NotesPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Notes"
     Title="Notes"
+    Appearing="{Binding NotesPageAppearing}"
     BackgroundColor="#22272c">
+
+    <ContentPage.BindingContext>
+        <local:NotesPageViewModel />
+    </ContentPage.BindingContext>
 
     <!--  The "master" grid  -->
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -17,8 +23,8 @@
 
             <!--  The list containing all the notes  -->
             <ListView
-                x:Name="listView"
                 ItemSelected="OnListViewItemSelected"
+                ItemsSource="{Binding Notes}"
                 RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate>

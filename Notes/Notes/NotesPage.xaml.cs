@@ -20,22 +20,6 @@ namespace Notes
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Holds the notes in a list
-        /// </summary>
-        private List<Note> _notes = new List<Note>();
-
-        /// <summary>
-        /// Public accessor and modifier for the notes list
-        /// </summary>
-        public List<Note> Notes
-        {
-            get { return _notes; }
-            set
-            {
-                _notes = value;
-            }
-        }
 
         /// <summary>
         /// Shows the correct view (either the listview or the emptyview)
