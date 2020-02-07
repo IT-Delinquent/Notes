@@ -1,61 +1,66 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Notes.NotesPage"
-             Title="Notes"
-             BackgroundColor="#22272c">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Notes.NotesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Notes"
+    BackgroundColor="#22272c">
 
-    <!-- The "master" grid -->
-    <Grid
-        HorizontalOptions="FillAndExpand"
-        VerticalOptions="FillAndExpand">
+    <!--  The "master" grid  -->
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-        <!-- Scroll view for the list -->
-        <ScrollView Margin="10"
-                VerticalOptions="FillAndExpand"
-                IsVisible="True">
+        <!--  Scroll view for the list  -->
+        <ScrollView
+            Margin="10"
+            IsVisible="True"
+            VerticalOptions="FillAndExpand">
 
-            <!-- The list containing all the notes -->
-            <ListView x:Name="listView"
-                      ItemSelected="OnListViewItemSelected"
-                      RowHeight="100">
+            <!--  The list containing all the notes  -->
+            <ListView
+                x:Name="listView"
+                ItemSelected="OnListViewItemSelected"
+                RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!-- Frame to give each note a background -->
-                            <Frame BackgroundColor="#41464c"
-                                   CornerRadius="6"
-                                   Margin="5, 5, 10 ,5">
+                            <!--  Frame to give each note a background  -->
+                            <Frame
+                                Margin="5,5,10,5"
+                                BackgroundColor="#41464c"
+                                CornerRadius="6">
 
-                                <!-- Seperating the image from the text -->
-                                <Grid HorizontalOptions="FillAndExpand"
-                                      VerticalOptions="FillAndExpand">
+                                <!--  Seperating the image from the text  -->
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <!-- Note image -->
-                                    <Image Source="Assets/Images/note.png"
-                                           VerticalOptions="CenterAndExpand"
-                                           HorizontalOptions="CenterAndExpand"
-                                           Margin="2" />
+                                    <!--  Note image  -->
+                                    <Image
+                                        Margin="2"
+                                        HorizontalOptions="CenterAndExpand"
+                                        Source="Assets/Images/note.png"
+                                        VerticalOptions="CenterAndExpand" />
 
-                                    <!-- The title and date -->
-                                    <StackLayout Grid.Column="1"
-                                                 Orientation="Vertical"
-                                                 HorizontalOptions="Start"
-                                                 VerticalOptions="Start">
-                                        <Label Text="{Binding Title}"
-                                               TextColor="White"
-                                               FontSize="Large"
-                                               HorizontalOptions="FillAndExpand"
-                                               VerticalOptions="Start" />
-                                        <Label Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
-                                               TextColor="#a5a5a5"
-                                               FontSize="Small"
-                                               HorizontalOptions="Start"
-                                               VerticalOptions="Center" />
+                                    <!--  The title and date  -->
+                                    <StackLayout
+                                        Grid.Column="1"
+                                        HorizontalOptions="Start"
+                                        Orientation="Vertical"
+                                        VerticalOptions="Start">
+                                        <Label
+                                            FontSize="Large"
+                                            HorizontalOptions="FillAndExpand"
+                                            Text="{Binding Title}"
+                                            TextColor="White"
+                                            VerticalOptions="Start" />
+                                        <Label
+                                            FontSize="Small"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
+                                            TextColor="#a5a5a5"
+                                            VerticalOptions="Center" />
                                     </StackLayout>
                                 </Grid>
                             </Frame>
@@ -65,33 +70,36 @@
             </ListView>
         </ScrollView>
 
-        <!-- Display for an empty list -->
-        <Frame x:Name="emptyview"
+        <!--  Display for an empty list  -->
+        <Frame
+            x:Name="emptyview"
             BackgroundColor="Transparent"
-        HorizontalOptions="FillAndExpand"
-        VerticalOptions="Fill"
-        IsVisible="False">
+            HorizontalOptions="FillAndExpand"
+            IsVisible="False"
+            VerticalOptions="Fill">
             <Grid>
 
-                <!-- Cocktail -->
-                <StackLayout Orientation="Vertical"
-                         HorizontalOptions="CenterAndExpand"
-                         VerticalOptions="CenterAndExpand">
-                    <Label Text="Nothing to show!"
-                           FontSize="Title"
-                           TextColor="White" />
+                <!--  Cocktail  -->
+                <StackLayout
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        FontSize="Title"
+                        Text="Nothing to show!"
+                        TextColor="White" />
                     <Image Source="Assets/Images/cocktail.png" />
                 </StackLayout>
             </Grid>
         </Frame>
 
-        <!-- Floating button to add a new note -->
-        <Button Text="+"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Margin="20"
-                Clicked="OnNoteAddedClicked"
-                Style="{StaticResource Key=FloatingActionButton}" 
-                />
+        <!--  Floating button to add a new note  -->
+        <Button
+            Margin="20"
+            Clicked="OnNoteAddedClicked"
+            HorizontalOptions="End"
+            Style="{StaticResource Key=FloatingActionButton}"
+            Text="+"
+            VerticalOptions="End" />
     </Grid>
 </ContentPage>
