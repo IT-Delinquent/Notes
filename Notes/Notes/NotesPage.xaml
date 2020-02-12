@@ -3,29 +3,26 @@
     x:Class="Notes.NotesPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Notes"
+    xmlns:local="clr-namespace:Notes.ViewModels"
+    x:Name="ContentPage"
     Title="Notes"
-    Appearing="{Binding NotesPageAppearing}"
     BackgroundColor="#22272c">
-
-    <ContentPage.BindingContext>
-        <local:NotesPageViewModel />
-    </ContentPage.BindingContext>
 
     <!--  The "master" grid  -->
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
         <!--  Scroll view for the list  -->
         <ScrollView
+            x:Name="listview"
             Margin="10"
-            IsVisible="True"
+            IsVisible="{Binding NotesListIsVisible}"
             VerticalOptions="FillAndExpand">
 
             <!--  The list containing all the notes  -->
             <ListView
-                ItemSelected="OnListViewItemSelected"
                 ItemsSource="{Binding Notes}"
-                RowHeight="100">
+                RowHeight="100"
+                SelectedItem="{Binding SelectedNote}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -40,6 +37,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40" />
                                         <ColumnDefinition />
+                                        <ColumnDefinition Width="50" />
                                     </Grid.ColumnDefinitions>
 
                                     <!--  Note image  -->
@@ -68,6 +66,15 @@
                                             TextColor="#a5a5a5"
                                             VerticalOptions="Center" />
                                     </StackLayout>
+
+                                    <Button
+                                        Grid.Column="2"
+                                        BackgroundColor="#22272c"
+                                        FontSize="12"
+                                        HorizontalOptions="FillAndExpand"
+                                        Text="Edit"
+                                        TextColor="White"
+                                        VerticalOptions="FillAndExpand" />
                                 </Grid>
                             </Frame>
                         </ViewCell>
@@ -81,7 +88,7 @@
             x:Name="emptyview"
             BackgroundColor="Transparent"
             HorizontalOptions="FillAndExpand"
-            IsVisible="False"
+            IsVisible="{Binding EmptyListIsVisible}"
             VerticalOptions="Fill">
             <Grid>
 
@@ -102,7 +109,7 @@
         <!--  Floating button to add a new note  -->
         <Button
             Margin="20"
-            Clicked="OnNoteAddedClicked"
+            Command="{Binding NewNoteCommand}"
             HorizontalOptions="End"
             Style="{StaticResource Key=FloatingActionButton}"
             Text="+"

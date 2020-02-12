@@ -36,6 +36,13 @@ namespace Notes
                 return;
             }
 
+
+            if (note.Title.Contains(":"))
+            {
+                await DisplayAlert("Invalid Title", "The title cannot contain ':'", "OK");
+                return;
+            }
+
             // Create a new file path and save the data
             var filename = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
             File.WriteAllText(filename, saveData);

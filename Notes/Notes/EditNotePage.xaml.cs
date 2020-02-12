@@ -36,6 +36,12 @@ namespace Notes
                 return;
             }
 
+            if (note.Title.Contains(":"))
+            {
+                await DisplayAlert("Invalid Title", "The title cannot contain ':'", "OK");
+                return;
+            }
+
             // Update the note file
             File.WriteAllText(note.Filename, saveData);
 
@@ -70,12 +76,12 @@ namespace Notes
             else
             {
                 //Delete the note
-                await DisplayAlert("Deleted", "Your note has been deleted", "OK");
                 //Check if the note exists
                 if (File.Exists(note.Filename))
                 {
                     //Delete it if it exists
                     File.Delete(note.Filename);
+                    await DisplayAlert("Deleted", "Your note has been deleted", "OK");
                 }
                 else
                 {
