@@ -23,7 +23,8 @@ namespace Notes.ViewModels
         public NotesPageViewModel()
         {
             NewNoteCommand = new Command(async () => await NewNoteAsync());
-            NoteTapCommand = new Command(async () => await LoadNoteAsync());
+            EditNoteCommand = new Command(async () => await LoadNoteAsync());
+            AnywhereTapCommand = new Command(AnyWhereClick);
         }
 
         #region Private backing fields
@@ -48,6 +49,11 @@ namespace Notes.ViewModels
         /// </summary>
         private bool _emptyListIsVisible = false;
 
+        /// <summary>
+        /// Whether the edit button is visible
+        /// </summary>
+        private bool _editNoteButtonIsVisible = false;
+
         #endregion
 
         #region public methods
@@ -58,7 +64,7 @@ namespace Notes.ViewModels
         /// </summary>
         public void OnAppearing()
         {
-            NoteTapCommand.CanExecute(true);
+            SelectedNote = null;
 
             var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
 
@@ -79,6 +85,7 @@ namespace Notes.ViewModels
                 });
             }
             ShowCorrectView();
+            ShowEditButton();
         }
 
 
@@ -131,9 +138,15 @@ namespace Notes.ViewModels
             get { return _selectedNote; }
             set 
             { 
+                if (_selectedNote == value)
+                {
+                    //Deselect the note
+                    _selectedNote = null;
+                    return;
+                }
                 _selectedNote = value;
                 OnPropertyChanged();
-                NoteTapCommand.Execute(LoadNoteAsync());
+                ShowEditButton();
             }
         }
 
@@ -164,6 +177,19 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
+        /// Public accessor and setter for displaying the edit note button
+        /// </summary>
+        public bool EditNoteButtonIsVisible
+        {
+            get { return _editNoteButtonIsVisible; }
+            set
+            {
+                _editNoteButtonIsVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Command for lauching a new note
         /// </summary>
         public ICommand NewNoteCommand { get; }
@@ -171,7 +197,9 @@ namespace Notes.ViewModels
         /// <summary>
         /// Command for launching the selected note
         /// </summary>
-        public ICommand NoteTapCommand { get; private set; }
+        public ICommand EditNoteCommand { get; }
+
+        public ICommand AnywhereTapCommand { get; }
 
         #endregion
 
@@ -206,6 +234,11 @@ namespace Notes.ViewModels
             });
         }
 
+        private void AnyWhereClick()
+        {
+            SelectedNote = null;
+        }
+
         /// <summary>
         /// Shows the correct view based on the amount of notes in the application
         /// </summary>
@@ -222,6 +255,21 @@ namespace Notes.ViewModels
                 //Show the notes list view
                 NotesListIsVisible = true;
                 EmptyListIsVisible = false;
+            }
+        }
+
+        /// <summary>
+        /// Shows the correct button for editing or creating a note
+        /// </summary>
+        private void ShowEditButton()
+        {
+            if (SelectedNote == null)
+            {
+                EditNoteButtonIsVisible = false;
+            }
+            else
+            {
+                EditNoteButtonIsVisible = true;
             }
         }
 

@@ -22,7 +22,7 @@
             <ListView
                 ItemsSource="{Binding Notes}"
                 RowHeight="100"
-                SelectedItem="{Binding SelectedNote}">
+                SelectedItem="{Binding SelectedNote, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -37,7 +37,6 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="40" />
                                         <ColumnDefinition />
-                                        <ColumnDefinition Width="50" />
                                     </Grid.ColumnDefinitions>
 
                                     <!--  Note image  -->
@@ -66,15 +65,6 @@
                                             TextColor="#a5a5a5"
                                             VerticalOptions="Center" />
                                     </StackLayout>
-
-                                    <Button
-                                        Grid.Column="2"
-                                        BackgroundColor="#22272c"
-                                        FontSize="12"
-                                        HorizontalOptions="FillAndExpand"
-                                        Text="Edit"
-                                        TextColor="White"
-                                        VerticalOptions="FillAndExpand" />
                                 </Grid>
                             </Frame>
                         </ViewCell>
@@ -106,13 +96,32 @@
             </Grid>
         </Frame>
 
-        <!--  Floating button to add a new note  -->
-        <Button
+        <!--  Floating buttons  -->
+        <StackLayout
             Margin="20"
-            Command="{Binding NewNoteCommand}"
             HorizontalOptions="End"
-            Style="{StaticResource Key=FloatingActionButton}"
-            Text="+"
-            VerticalOptions="End" />
+            Orientation="Horizontal"
+            VerticalOptions="End">
+
+            <!--  Floating button to add edit a note  -->
+            <Button
+                Margin="5"
+                BackgroundColor="#41464c"
+                Command="{Binding EditNoteCommand}"
+                CornerRadius="50"
+                HeightRequest="70"
+                ImageSource="Assets/Images/edit.png"
+                IsVisible="{Binding EditNoteButtonIsVisible, FallbackValue=false}"
+                WidthRequest="70" />
+
+            <!--  Floating button to add a new note  -->
+
+            <Button
+                Margin="5"
+                Command="{Binding NewNoteCommand}"
+                Style="{StaticResource Key=FloatingActionButton}"
+                Text="+" />
+        </StackLayout>
+
     </Grid>
 </ContentPage>

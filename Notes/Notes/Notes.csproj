@@ -12,12 +12,12 @@
 
   <ItemGroup>
     <None Remove="Assets\Images\cocktail.png" />
-    <None Remove="Assets\Images\Note.png" />
+    <None Remove="Assets\Images\edit.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\Images\cocktail.png" />
-    <Content Include="Assets\Images\note.png" />
+    <Content Include="Assets\Images\edit.png" />
   </ItemGroup>
 
   <ItemGroup>

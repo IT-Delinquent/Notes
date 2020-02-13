@@ -1,34 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="Notes.App">
+<Application
+    x:Class="Notes.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
+            
+            <Color x:Key=""
 
-            <!-- Styles the nav bar -->
+            <!--  Styles the nav bar  -->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="#41464c" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
 
-            <!-- Styles the editors -->
+            <!--  Styles the editors  -->
             <Style TargetType="Editor">
                 <Setter Property="TextColor" Value="White" />
                 <Setter Property="PlaceholderColor" Value="White" />
                 <Setter Property="BackgroundColor" Value="#1f2327" />
             </Style>
 
-            <!-- Styles the default buttons -->
+            <!--  Styles the default buttons  -->
             <Style TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#41464c" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
 
-            <!-- Styles the floating action buttons -->
-            <Style TargetType="Button" x:Key="FloatingActionButton">
+            <!--  Styles the floating action buttons  -->
+            <Style x:Key="FloatingActionButton" TargetType="Button">
                 <Setter Property="FontSize" Value="32" />
                 <Setter Property="CornerRadius" Value="50" />
                 <Setter Property="HeightRequest" Value="70" />
@@ -37,7 +40,7 @@
                 <Setter Property="TextColor" Value="White" />
             </Style>
 
-            <!-- Styles the labels -->
+            <!--  Styles the labels  -->
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="White" />
             </Style>
