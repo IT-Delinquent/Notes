@@ -1,35 +1,38 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Notes.NewNotePage"
-             Title="New Note"
-             BackgroundColor="#22272c">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Notes.NewNotePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="New Note"
+    BackgroundColor="#22272c">
 
     <StackLayout Margin="20">
 
-        <!-- Title editor -->
-        <Editor Placeholder="Enter your title"
-                Text="{Binding Title}"
-                MaxLength="20"
-                FontSize="Large" />
+        <!--  Title editor  -->
+        <Editor
+            FontSize="Large"
+            MaxLength="20"
+            Placeholder="Enter your title"
+            Text="{Binding Title}" />
 
-        <!-- Text editor -->
-        <Editor Placeholder="Enter your note"
-                Text="{Binding Text}"
-                VerticalOptions="FillAndExpand"
-                FontSize="Body" />
+        <!--  Text editor  -->
+        <Editor
+            FontSize="Body"
+            Placeholder="Enter your note"
+            Text="{Binding Text}"
+            VerticalOptions="FillAndExpand" />
 
-        <!-- Save and Cancel buttons -->
+        <!--  Save and Cancel buttons  -->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Save"
-                    Clicked="OnSaveButtonClicked" />
-            <Button Grid.Column="1"
-                    Text="Cancel"
-                    Clicked="OnCancelButtonClicked" />
+            <Button Command="{Binding SaveCommand}" Text="Save" />
+            <Button
+                Grid.Column="1"
+                Command="{Binding CancelCommand}"
+                Text="Cancel" />
         </Grid>
     </StackLayout>
 </ContentPage>

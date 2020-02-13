@@ -91,10 +91,6 @@ namespace Notes.ViewModels
 
         #endregion
 
-        
-
-        
-
         #region PropertyChanged
 
         /// <summary>
@@ -112,7 +108,6 @@ namespace Notes.ViewModels
         }
 
         #endregion
-
 
         #region Public fields
 
@@ -212,9 +207,7 @@ namespace Notes.ViewModels
         private async Task NewNoteAsync()
         {
             await Application.Current.MainPage.Navigation.PushAsync(new NewNotePage
-            {
-                BindingContext = new Note()
-            });
+            {});
         }
 
         /// <summary>
