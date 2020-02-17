@@ -1,7 +1,7 @@
-﻿using Notes.Models;
+﻿using Notes.Helpers;
+using Notes.Models;
 using System;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -182,7 +182,7 @@ namespace Notes.ViewModels
 
             string noteData = Title + ':' + Text;
 
-            File.WriteAllText(_note.Filename, noteData);
+            SaveAndLoadHelpers.SaveNoteData(_note.Filename, noteData);
 
             await Application
                 .Current
@@ -218,9 +218,9 @@ namespace Notes.ViewModels
                 return;
             }
 
-            if (File.Exists(_note.Filename))
+            if (SaveAndLoadHelpers.NoteExists(_note.Filename))
             {
-                File.Delete(_note.Filename);
+                SaveAndLoadHelpers.DeleteNote(_note.Filename);
                 await Application
                     .Current
                     .MainPage

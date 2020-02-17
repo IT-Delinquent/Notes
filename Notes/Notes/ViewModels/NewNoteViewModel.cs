@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using System.IO;
+﻿using Notes.Helpers;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -147,9 +147,9 @@ namespace Notes.ViewModels
             }
 
             string noteData = Title + ':' + Text;
-            string fileName = Path.Combine(App.FolderPath, $"{Path.GetRandomFileName()}.notes.txt");
+            string fileName = SaveAndLoadHelpers.GetNewFileName();
 
-            File.WriteAllText(fileName, noteData);
+            SaveAndLoadHelpers.SaveNoteData(fileName, noteData);
 
             await Application
                 .Current

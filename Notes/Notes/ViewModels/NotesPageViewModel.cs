@@ -1,8 +1,8 @@
 ﻿using Notes.Helpers;
 using Notes.Models;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -63,22 +63,22 @@ namespace Notes.ViewModels
         {
             SelectedNote = null;
 
-            var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
+            List<string> files = SaveAndLoadHelpers.EnumerateAllFiles();
 
             Notes?.Clear();
 
-            foreach (var filename in files)
+            foreach (var fileName in files)
             {
-                string noteData = File.ReadAllText(filename);
+                string noteData = SaveAndLoadHelpers.ReadAllFileText(fileName);
 
                 int titleLocation = noteData.IndexOf(":");
 
                 Notes.Add(new Note
                 {
-                    Filename = filename,
+                    Filename = fileName,
                     Title = noteData.Substring(0, titleLocation),
                     Text = noteData.Substring(titleLocation + 1),
-                    Date = File.GetCreationTime(filename)
+                    Date = SaveAndLoadHelpers.GetNoteDate(fileName)
                 });
             }
             ShowCorrectView();
