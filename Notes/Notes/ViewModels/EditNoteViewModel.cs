@@ -1,12 +1,9 @@
 ﻿using Notes.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Notes.ViewModels
@@ -31,7 +28,7 @@ namespace Notes.ViewModels
             Date = _note.Date;
         }
 
-        #endregion
+        #endregion Public methods
 
         #region PropertyChanged
 
@@ -49,7 +46,7 @@ namespace Notes.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #endregion
+        #endregion PropertyChanged
 
         #region Private backing fields
 
@@ -78,7 +75,7 @@ namespace Notes.ViewModels
         /// Changes if the title is empty or note
         /// </summary>
         private bool canAction = true;
-    
+
         /// <summary>
         /// Holds the save command
         /// </summary>
@@ -89,7 +86,7 @@ namespace Notes.ViewModels
         /// </summary>
         private Command _deleteCommand;
 
-        #endregion
+        #endregion Private backing fields
 
         #region Public fields
 
@@ -139,14 +136,16 @@ namespace Notes.ViewModels
         /// <summary>
         /// Public save command
         /// </summary>
-        public Command SaveCommand {
-            get {
+        public Command SaveCommand
+        {
+            get
+            {
                 return _saveCommand ?? (_saveCommand = new Command(
                     execute: async () => await SaveAsync(),
                     canExecute: () => canAction));
             }
         }
-        
+
         /// <summary>
         /// Public delete command
         /// </summary>
@@ -160,13 +159,13 @@ namespace Notes.ViewModels
             }
         }
 
-        #endregion
+        #endregion Public fields
 
         #region Private methods
 
         /// <summary>
         /// The save async method
-        /// 
+        ///
         /// Saves/updates the note and closes the edit note page
         /// </summary>
         /// <returns>A task to save/update the note and close the edit note page</returns>
@@ -194,7 +193,7 @@ namespace Notes.ViewModels
 
         /// <summary>
         /// The delete async method
-        /// 
+        ///
         /// Deletes the current note following validation and closes the note page
         /// </summary>
         /// <returns>A task to delete the current note following validation and close the note page</returns>
@@ -258,6 +257,6 @@ namespace Notes.ViewModels
             }
         }
 
-        #endregion
+        #endregion Private methods
     }
 }

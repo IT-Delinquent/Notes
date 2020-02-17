@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Notes.Helpers
+﻿namespace Notes.Helpers
 {
     public class SaveAndLoadHelpers
     {

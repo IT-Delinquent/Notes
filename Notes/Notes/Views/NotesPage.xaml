@@ -121,6 +121,5 @@
                 Style="{StaticResource Key=FloatingActionButton}"
                 Text="+" />
         </StackLayout>
-
     </Grid>
 </ContentPage>

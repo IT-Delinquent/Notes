@@ -1,10 +1,6 @@
 ﻿using Notes.Helpers;
-using Notes.Models;
 using Notes.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace Notes

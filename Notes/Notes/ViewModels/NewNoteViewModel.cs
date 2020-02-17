@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
-using System.Windows.Input;
-using System.Runtime.CompilerServices;
-using Xamarin.Forms;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Notes.ViewModels
 {
@@ -26,7 +23,7 @@ namespace Notes.ViewModels
             SaveCommand = new Command(async () => await SaveAsync(), CanSaveNote);
         }
 
-        #endregion
+        #endregion Public methods
 
         #region PropertyChanged
 
@@ -44,7 +41,7 @@ namespace Notes.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #endregion
+        #endregion PropertyChanged
 
         #region Private backing fields
 
@@ -58,13 +55,13 @@ namespace Notes.ViewModels
         /// </summary>
         private string _text;
 
-        #endregion
+        #endregion Private backing fields
 
         #region Public fields
 
         /// <summary>
         /// Accessor and modifier for the title
-        /// 
+        ///
         /// Also runs ChangeCanExecute for the save command
         /// </summary>
         public string Title
@@ -75,7 +72,6 @@ namespace Notes.ViewModels
                 _title = value;
                 OnPropertyChanged();
                 ((Command)SaveCommand).ChangeCanExecute();
-
             }
         }
 
@@ -102,7 +98,7 @@ namespace Notes.ViewModels
         /// </summary>
         public ICommand CancelCommand { get; }
 
-        #endregion
+        #endregion Public fields
 
         #region Private methods
 
@@ -121,10 +117,10 @@ namespace Notes.ViewModels
                 return true;
             }
         }
-        
+
         /// <summary>
         /// The cancel async method
-        /// 
+        ///
         /// Closes the new note page
         /// </summary>
         /// <returns>A task to close the new note page</returns>
@@ -135,7 +131,7 @@ namespace Notes.ViewModels
 
         /// <summary>
         /// The save async method
-        /// 
+        ///
         /// Saves the note and closes the new note window
         /// </summary>
         /// <returns>A task to save the note and close the new note page</returns>
@@ -160,9 +156,8 @@ namespace Notes.ViewModels
                 .MainPage
                 .Navigation
                 .PopAsync();
-
         }
 
-        #endregion
+        #endregion Private methods
     }
 }

@@ -1,21 +1,17 @@
 ﻿using Notes.Helpers;
 using Notes.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Linq;
 
 namespace Notes.ViewModels
 {
     /// <summary>
-    /// The class for the notes list page 
+    /// The class for the notes list page
     /// </summary>
     public class NotesPageViewModel : IPageAppearingEvent, INotifyPropertyChanged
     {
@@ -46,7 +42,7 @@ namespace Notes.ViewModels
         /// </summary>
         private bool _editNoteButtonIsVisible = false;
 
-        #endregion
+        #endregion Private backing fields
 
         #region public methods
 
@@ -61,7 +57,7 @@ namespace Notes.ViewModels
 
         /// <summary>
         /// The method for when the notespage appears
-        /// Uses the code behind for the event forwarding 
+        /// Uses the code behind for the event forwarding
         /// </summary>
         public void OnAppearing()
         {
@@ -89,8 +85,7 @@ namespace Notes.ViewModels
             ShowEditButton();
         }
 
-
-        #endregion
+        #endregion public methods
 
         #region PropertyChanged
 
@@ -108,7 +103,7 @@ namespace Notes.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #endregion
+        #endregion PropertyChanged
 
         #region Public fields
 
@@ -118,12 +113,13 @@ namespace Notes.ViewModels
         public ObservableCollection<Note> Notes
         {
             get { return _notes; }
-            set 
-            { 
+            set
+            {
                 _notes = value;
                 OnPropertyChanged();
             }
         }
+
         //.OrderByDescending(x => x.Date) as ObservableCollection<Note>;
 
         /// <summary>
@@ -132,8 +128,8 @@ namespace Notes.ViewModels
         public Note SelectedNote
         {
             get { return _selectedNote; }
-            set 
-            { 
+            set
+            {
                 if (_selectedNote == value)
                 {
                     //Deselect the note
@@ -152,8 +148,8 @@ namespace Notes.ViewModels
         public bool NotesListIsVisible
         {
             get { return _noteListIsVisible; }
-            set 
-            { 
+            set
+            {
                 _noteListIsVisible = value;
                 OnPropertyChanged();
             }
@@ -165,8 +161,8 @@ namespace Notes.ViewModels
         public bool EmptyListIsVisible
         {
             get { return _emptyListIsVisible; }
-            set 
-            { 
+            set
+            {
                 _emptyListIsVisible = value;
                 OnPropertyChanged();
             }
@@ -195,7 +191,7 @@ namespace Notes.ViewModels
         /// </summary>
         public ICommand EditNoteCommand { get; }
 
-        #endregion
+        #endregion Public fields
 
         #region Private methods
 
@@ -205,7 +201,7 @@ namespace Notes.ViewModels
         /// <returns></returns>
         private async Task NewNoteAsync()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new NewNotePage{});
+            await Application.Current.MainPage.Navigation.PushAsync(new NewNotePage { });
         }
 
         /// <summary>
@@ -219,7 +215,7 @@ namespace Notes.ViewModels
                 return;
             }
 
-            await Application.Current.MainPage.Navigation.PushAsync(new EditNotePage(SelectedNote){});
+            await Application.Current.MainPage.Navigation.PushAsync(new EditNotePage(SelectedNote) { });
         }
 
         /// <summary>
@@ -256,6 +252,6 @@ namespace Notes.ViewModels
             }
         }
 
-        #endregion
+        #endregion Private methods
     }
 }

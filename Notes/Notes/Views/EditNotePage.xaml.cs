@@ -1,7 +1,5 @@
 ﻿using Notes.Models;
 using Notes.ViewModels;
-using System;
-using System.IO;
 using Xamarin.Forms;
 
 namespace Notes
