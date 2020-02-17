@@ -173,10 +173,9 @@ namespace Notes.ViewModels
         {
             if (Title.Contains(":"))
             {
-                await Application
-                    .Current
-                    .MainPage
-                    .DisplayAlert("Invalid Title", "Title cannot include special character ':'", "OK");
+                await DisplayPopupHelpers
+                    .ShowOKDialogAsync("Invalid Title", 
+                    "Title cannot include special character ':'");
                 return;
             }
 
@@ -184,11 +183,7 @@ namespace Notes.ViewModels
 
             SaveAndLoadHelpers.SaveNoteData(_note.Filename, noteData);
 
-            await Application
-                .Current
-                .MainPage
-                .Navigation
-                .PopAsync();
+            await NavigationHelpers.PopCurrentPageAsync();
         }
 
         /// <summary>
@@ -199,10 +194,9 @@ namespace Notes.ViewModels
         /// <returns>A task to delete the current note following validation and close the note page</returns>
         private async Task DeleteAsync()
         {
-            string promptResult = await Application
-                .Current
-                .MainPage
-                .DisplayPromptAsync("Validation", "To delete this note, enter it's title");
+            string promptResult = await DisplayPopupHelpers
+                .ShowPromptAsync("Validation", 
+                "To delete this note, enter it's title");
 
             if (promptResult == null)
             {
@@ -211,34 +205,29 @@ namespace Notes.ViewModels
 
             if (promptResult != Title)
             {
-                await Application
-                    .Current
-                    .MainPage
-                    .DisplayAlert("Incorrect", "Your note has not been deleted", "OK");
+                await DisplayPopupHelpers
+                    .ShowOKDialogAsync("Incorrect", 
+                    "Your note has not been deleted");
+
                 return;
             }
 
             if (SaveAndLoadHelpers.NoteExists(_note.Filename))
             {
                 SaveAndLoadHelpers.DeleteNote(_note.Filename);
-                await Application
-                    .Current
-                    .MainPage
-                    .DisplayAlert("Deleted", "Your note has been deleted", "OK");
+                await DisplayPopupHelpers
+                    .ShowOKDialogAsync("Deleted",
+                    "Your note has been deleted");
             }
             else
             {
-                await Application
-                    .Current
-                    .MainPage
-                    .DisplayAlert("Error", "The file could not be found; your note has not been deleted", "OK");
+                await DisplayPopupHelpers
+                    .ShowOKDialogAsync("Error",
+                    "The file could not be found; your note has not been deleted");
+
             }
 
-            await Application
-                .Current
-                .MainPage
-                .Navigation
-                .PopAsync();
+            await NavigationHelpers.PopCurrentPageAsync();
         }
 
         /// <summary>

@@ -195,7 +195,7 @@ namespace Notes.ViewModels
         /// <returns></returns>
         private async Task NewNoteAsync()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new NewNotePage { });
+            await NavigationHelpers.PushPageAsync(new NewNotePage { });
         }
 
         /// <summary>
@@ -208,8 +208,7 @@ namespace Notes.ViewModels
             {
                 return;
             }
-
-            await Application.Current.MainPage.Navigation.PushAsync(new EditNotePage(SelectedNote) { });
+            await NavigationHelpers.PushPageAsync(new EditNotePage(SelectedNote) { });
         }
 
         /// <summary>

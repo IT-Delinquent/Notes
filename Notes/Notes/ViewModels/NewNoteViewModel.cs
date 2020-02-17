@@ -126,7 +126,7 @@ namespace Notes.ViewModels
         /// <returns>A task to close the new note page</returns>
         private async Task CancelAsync()
         {
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await NavigationHelpers.PopCurrentPageAsync();
         }
 
         /// <summary>
@@ -139,10 +139,10 @@ namespace Notes.ViewModels
         {
             if (Title.Contains(":"))
             {
-                await Application
-                    .Current
-                    .MainPage
-                    .DisplayAlert("Invalid Title", "Title cannot include special character ':'", "OK");
+                await DisplayPopupHelpers
+                    .ShowOKDialogAsync("Invalid Title",
+                    "Title cannot include special character ':'");
+
                 return;
             }
 
@@ -151,11 +151,7 @@ namespace Notes.ViewModels
 
             SaveAndLoadHelpers.SaveNoteData(fileName, noteData);
 
-            await Application
-                .Current
-                .MainPage
-                .Navigation
-                .PopAsync();
+            await NavigationHelpers.PopCurrentPageAsync();
         }
 
         #endregion Private methods
