@@ -61,7 +61,7 @@ namespace Notes.ViewModels
         /// </summary>
         public void OnAppearing()
         {
-            //SelectedNote = null;
+            SelectedNote = null;
 
             var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
 
@@ -130,12 +130,6 @@ namespace Notes.ViewModels
             get { return _selectedNote; }
             set
             {
-                if (_selectedNote == value)
-                {
-                    //Deselect the note
-                    _selectedNote = null;
-                    return;
-                }
                 _selectedNote = value;
                 OnPropertyChanged();
                 ShowEditButton();
