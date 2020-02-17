@@ -34,10 +34,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Clicked="OnSaveButtonClicked" Text="Save" />
+            <Button Command="{Binding SaveCommand}" Text="Save" />
             <Button
                 Grid.Column="1"
-                Clicked="OnDeleteButtonClicked"
+                Command="{Binding DeleteCommand}"
                 Text="Delete" />
         </Grid>
     </StackLayout>

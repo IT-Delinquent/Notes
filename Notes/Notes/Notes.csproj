@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="EditNotePage.xaml.cs">
+    <Compile Update="Views\EditNotePage.xaml.cs">
       <DependentUpon>EditNotePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <EmbeddedResource Update="Views\NewNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="EditNotePage.xaml">
+    <EmbeddedResource Update="Views\EditNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NotesPage.xaml">

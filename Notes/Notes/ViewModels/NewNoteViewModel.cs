@@ -23,7 +23,7 @@ namespace Notes.ViewModels
         public NewNoteViewModel()
         {
             CancelCommand = new Command(async () => await CancelAsync());
-            SaveCommand = new Command(async () => await SaveAsync(), CanExecuteCommand);
+            SaveCommand = new Command(async () => await SaveAsync(), CanSaveNote);
         }
 
         #endregion
@@ -110,7 +110,7 @@ namespace Notes.ViewModels
         /// Whether the save command can be executed or not
         /// </summary>
         /// <returns>A boolean</returns>
-        private bool CanExecuteCommand()
+        private bool CanSaveNote()
         {
             if (Title.Length <= 0)
             {
@@ -143,7 +143,9 @@ namespace Notes.ViewModels
         {
             if (Title.Contains(":"))
             {
-                await Application.Current.MainPage
+                await Application
+                    .Current
+                    .MainPage
                     .DisplayAlert("Invalid Title", "Title cannot include special character ':'", "OK");
                 return;
             }
@@ -153,7 +155,11 @@ namespace Notes.ViewModels
 
             File.WriteAllText(fileName, noteData);
 
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application
+                .Current
+                .MainPage
+                .Navigation
+                .PopAsync();
 
         }
 

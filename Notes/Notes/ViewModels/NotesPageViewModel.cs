@@ -65,7 +65,7 @@ namespace Notes.ViewModels
         /// </summary>
         public void OnAppearing()
         {
-            SelectedNote = null;
+            //SelectedNote = null;
 
             var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
 
@@ -195,8 +195,6 @@ namespace Notes.ViewModels
         /// </summary>
         public ICommand EditNoteCommand { get; }
 
-        public ICommand AnywhereTapCommand { get; }
-
         #endregion
 
         #region Private methods
@@ -207,8 +205,7 @@ namespace Notes.ViewModels
         /// <returns></returns>
         private async Task NewNoteAsync()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new NewNotePage
-            {});
+            await Application.Current.MainPage.Navigation.PushAsync(new NewNotePage{});
         }
 
         /// <summary>
@@ -222,10 +219,7 @@ namespace Notes.ViewModels
                 return;
             }
 
-            await Application.Current.MainPage.Navigation.PushAsync(new EditNotePage
-            {
-                BindingContext = SelectedNote
-            });
+            await Application.Current.MainPage.Navigation.PushAsync(new EditNotePage(SelectedNote){});
         }
 
         /// <summary>
