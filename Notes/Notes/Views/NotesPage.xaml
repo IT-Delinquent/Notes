@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ContentPage"
     Title="Notes"
-    BackgroundColor="#22272c">
+    BackgroundColor="{StaticResource DarkBlue}">
 
     <!--  The "master" grid  -->
     <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -28,7 +28,7 @@
                             <!--  Frame to give each note a background  -->
                             <Frame
                                 Margin="5,5,10,5"
-                                BackgroundColor="#41464c"
+                                BackgroundColor="{StaticResource MediumBlue}"
                                 CornerRadius="6">
 
                                 <!--  Seperating the image from the text  -->
@@ -55,13 +55,13 @@
                                             FontSize="Large"
                                             HorizontalOptions="FillAndExpand"
                                             Text="{Binding Title}"
-                                            TextColor="White"
+                                            TextColor="{StaticResource WhiteText}"
                                             VerticalOptions="Start" />
                                         <Label
                                             FontSize="Small"
                                             HorizontalOptions="Start"
                                             Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
-                                            TextColor="#a5a5a5"
+                                            TextColor="{StaticResource DarkerText}"
                                             VerticalOptions="Center" />
                                     </StackLayout>
                                 </Grid>
@@ -89,7 +89,7 @@
                     <Label
                         FontSize="Title"
                         Text="Nothing to show!"
-                        TextColor="White" />
+                        TextColor="{StaticResource WhiteText}" />
                     <Image Source="Assets/Images/cocktail.png" />
                 </StackLayout>
             </Grid>
@@ -99,18 +99,16 @@
         <StackLayout
             Margin="20"
             HorizontalOptions="End"
-            Orientation="Horizontal"
+            Orientation="Vertical"
             VerticalOptions="End">
 
             <!--  Floating button to add edit a note  -->
             <Button
                 Margin="5"
-                BackgroundColor="#41464c"
                 Command="{Binding EditNoteCommand}"
-                CornerRadius="50"
-                HeightRequest="70"
                 ImageSource="Assets/Images/edit.png"
                 IsVisible="{Binding EditNoteButtonIsVisible, FallbackValue=false}"
+                Style="{StaticResource FloatingActionButton}"
                 WidthRequest="70" />
 
             <!--  Floating button to add a new note  -->
@@ -118,7 +116,7 @@
             <Button
                 Margin="5"
                 Command="{Binding NewNoteCommand}"
-                Style="{StaticResource Key=FloatingActionButton}"
+                Style="{StaticResource FloatingActionButton}"
                 Text="+" />
         </StackLayout>
     </Grid>
