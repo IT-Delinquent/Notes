@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="NewNotePage.xaml">
+    <EmbeddedResource Update="Views\NewNotePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="EditNotePage.xaml">

@@ -10,15 +10,23 @@ using System.IO;
 
 namespace Notes.ViewModels
 {
+    /// <summary>
+    /// The class for the new note view
+    /// </summary>
     public class NewNoteViewModel : INotifyPropertyChanged
     {
+        #region Public methods
+
+        /// <summary>
+        /// The constructor for the class
+        /// </summary>
         public NewNoteViewModel()
         {
             CancelCommand = new Command(async () => await CancelAsync());
-            SaveCommand = new Command(
-                execute: async () => await SaveAsync(),
-                canExecute: () => CanExecuteCommand());
+            SaveCommand = new Command(async () => await SaveAsync(), CanExecuteCommand);
         }
+
+        #endregion
 
         #region PropertyChanged
 
@@ -38,48 +46,99 @@ namespace Notes.ViewModels
 
         #endregion
 
+        #region Private backing fields
 
+        /// <summary>
+        /// Holds the title value
+        /// </summary>
         private string _title = "";
 
+        /// <summary>
+        /// Holds the text value
+        /// </summary>
+        private string _text;
+
+        #endregion
+
+        #region Public fields
+
+        /// <summary>
+        /// Accessor and modifier for the title
+        /// 
+        /// Also runs ChangeCanExecute for the save command
+        /// </summary>
         public string Title
         {
             get { return _title; }
-            set 
-            { 
+            set
+            {
                 _title = value;
                 OnPropertyChanged();
-                CanExecuteCommand();
-                
+                ((Command)SaveCommand).ChangeCanExecute();
+
             }
         }
 
-        private bool CanExecuteCommand()
-        {
-            return Title.Length > 0;
-        }
-
-
-        private string _text;
-
+        /// <summary>
+        /// Accessor and modifier for the text
+        /// </summary>
         public string Text
         {
             get { return _text; }
-            set 
-            { 
+            set
+            {
                 _text = value;
                 OnPropertyChanged();
             }
         }
 
+        /// <summary>
+        /// Public save command
+        /// </summary>
         public ICommand SaveCommand { get; }
 
+        /// <summary>
+        /// Public cancel command
+        /// </summary>
         public ICommand CancelCommand { get; }
 
+        #endregion
+
+        #region Private methods
+
+        /// <summary>
+        /// Whether the save command can be executed or not
+        /// </summary>
+        /// <returns>A boolean</returns>
+        private bool CanExecuteCommand()
+        {
+            if (Title.Length <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        
+        /// <summary>
+        /// The cancel async method
+        /// 
+        /// Closes the new note page
+        /// </summary>
+        /// <returns>A task to close the new note page</returns>
         private async Task CancelAsync()
         {
             await Application.Current.MainPage.Navigation.PopAsync();
         }
 
+        /// <summary>
+        /// The save async method
+        /// 
+        /// Saves the note and closes the new note window
+        /// </summary>
+        /// <returns>A task to save the note and close the new note page</returns>
         private async Task SaveAsync()
         {
             if (Title.Contains(":"))
@@ -97,5 +156,7 @@ namespace Notes.ViewModels
             await Application.Current.MainPage.Navigation.PopAsync();
 
         }
+
+        #endregion
     }
 }

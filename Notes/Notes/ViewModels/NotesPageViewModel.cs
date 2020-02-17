@@ -14,19 +14,11 @@ using System.Linq;
 
 namespace Notes.ViewModels
 {
+    /// <summary>
+    /// The class for the notes list page 
+    /// </summary>
     public class NotesPageViewModel : IPageAppearingEvent, INotifyPropertyChanged
     {
-
-        /// <summary>
-        /// The constructor for the class
-        /// </summary>
-        public NotesPageViewModel()
-        {
-            NewNoteCommand = new Command(async () => await NewNoteAsync());
-            EditNoteCommand = new Command(async () => await LoadNoteAsync());
-            AnywhereTapCommand = new Command(AnyWhereClick);
-        }
-
         #region Private backing fields
 
         /// <summary>
@@ -57,6 +49,15 @@ namespace Notes.ViewModels
         #endregion
 
         #region public methods
+
+        /// <summary>
+        /// The constructor for the class
+        /// </summary>
+        public NotesPageViewModel()
+        {
+            NewNoteCommand = new Command(async () => await NewNoteAsync());
+            EditNoteCommand = new Command(async () => await LoadNoteAsync());
+        }
 
         /// <summary>
         /// The method for when the notespage appears
@@ -225,11 +226,6 @@ namespace Notes.ViewModels
             {
                 BindingContext = SelectedNote
             });
-        }
-
-        private void AnyWhereClick()
-        {
-            SelectedNote = null;
         }
 
         /// <summary>

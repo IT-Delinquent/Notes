@@ -3,7 +3,6 @@
     x:Class="Notes.NotesPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Notes.ViewModels"
     x:Name="ContentPage"
     Title="Notes"
     BackgroundColor="#22272c">
