@@ -147,9 +147,9 @@ namespace Notes.ViewModels
             }
 
             string noteData = Title + ':' + Text;
-            string fileName = SaveAndLoadHelpers.GetNewFileName();
+            string fileName = IOHelpers.GetNewFileName();
 
-            SaveAndLoadHelpers.SaveNoteData(fileName, noteData);
+            IOHelpers.SaveNoteData(fileName, noteData);
 
             await NavigationHelpers.PopCurrentPageAsync();
         }

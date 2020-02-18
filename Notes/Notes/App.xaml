@@ -15,6 +15,7 @@
             <Color x:Key="MediumBlue">#41464c</Color>
             <Color x:Key="WhiteText">White</Color>
             <Color x:Key="DarkerText">#a5a5a5</Color>
+            <Color x:Key="ErrorRed">#ff4948</Color>
 
             <!--  Styles the nav bar  -->
             <Style TargetType="NavigationPage">

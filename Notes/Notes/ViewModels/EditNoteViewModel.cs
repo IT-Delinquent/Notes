@@ -181,7 +181,7 @@ namespace Notes.ViewModels
 
             string noteData = Title + ':' + Text;
 
-            SaveAndLoadHelpers.SaveNoteData(_note.Filename, noteData);
+            IOHelpers.SaveNoteData(_note.Filename, noteData);
 
             await NavigationHelpers.PopCurrentPageAsync();
         }
@@ -212,9 +212,9 @@ namespace Notes.ViewModels
                 return;
             }
 
-            if (SaveAndLoadHelpers.NoteExists(_note.Filename))
+            if (IOHelpers.NoteExists(_note.Filename))
             {
-                SaveAndLoadHelpers.DeleteNote(_note.Filename);
+                IOHelpers.DeleteNote(_note.Filename);
                 await DisplayPopupHelpers
                     .ShowOKDialogAsync("Deleted",
                     "Your note has been deleted");

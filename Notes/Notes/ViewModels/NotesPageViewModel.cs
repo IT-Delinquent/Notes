@@ -67,14 +67,14 @@ namespace Notes.ViewModels
         {
             SelectedNote = null;
 
-            List<string> files = SaveAndLoadHelpers.EnumerateAllFiles();
+            List<string> files = IOHelpers.EnumerateAllFiles();
             List<Note> _notes = new List<Note>();
 
             Notes?.Clear();
 
             foreach (var fileName in files)
             {
-                string noteData = SaveAndLoadHelpers.ReadAllFileText(fileName);
+                string noteData = IOHelpers.ReadAllFileText(fileName);
 
                 int titleLocation = noteData.IndexOf(":");
 
@@ -83,7 +83,7 @@ namespace Notes.ViewModels
                     Filename = fileName,
                     Title = noteData.Substring(0, titleLocation),
                     Text = noteData.Substring(titleLocation + 1),
-                    Date = SaveAndLoadHelpers.GetNoteDate(fileName)
+                    Date = IOHelpers.GetNoteDate(fileName)
                 });
             }
 

@@ -1,10 +1,14 @@
-﻿using Notes.Settings;
+﻿using Notes.Helpers;
+using Notes.Settings;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Notes.ViewModels
 {
@@ -37,6 +41,8 @@ namespace Notes.ViewModels
             {
                 SortOptions.Add(i);
             }
+
+            DeleteAllNotesCommand = new Command(async () => await DeleteAllNotes());
         }
 
         private ObservableCollection<string> _sortOptions = new ObservableCollection<string>();
@@ -64,7 +70,38 @@ namespace Notes.ViewModels
             }
         }
 
+        private async Task DeleteAllNotes()
+        {
+            await DisplayPopupHelpers
+                .ShowOKDialogAsync("Are you sure?",
+                "You are about to delete ALL your notes. This CANNOT be reversed!");
 
+            string promptResult = await DisplayPopupHelpers
+                .ShowPromptAsync("Are you sure?",
+                "Please enter 'DELETE ALL MY NOTES' into the box below to confirm");
+
+            if (promptResult == null)
+            {
+                return;
+            }
+
+            if (promptResult != "DELETE ALL MY NOTES")
+            {
+                await DisplayPopupHelpers
+                    .ShowOKDialogAsync("Incorrect",
+                    "Your notes have NOT been deleted");
+
+                return;
+            }
+
+            await Task.Run( () => IOHelpers.DeleteAllNotes());
+
+            await DisplayPopupHelpers
+                .ShowOKDialogAsync("Deleted",
+                "All your notes have now been deleted");
+        }
+
+        public ICommand DeleteAllNotesCommand { get; }
 
     }
 }

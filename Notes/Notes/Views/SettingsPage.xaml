@@ -12,25 +12,29 @@
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!--  Sort notes setter  -->
-                <StackLayout
-                    Padding="5"
+                <Picker
+                    Title="Order notes by"
+                    Margin="5"
                     BackgroundColor="{StaticResource DarkestBlue}"
-                    Orientation="Vertical">
-                    <Label
-                        FontSize="18"
-                        HorizontalOptions="Center"
-                        Text="Order notes by"
-                        VerticalOptions="Center" />
-                    <Picker
-                        HorizontalOptions="CenterAndExpand"
-                        ItemsSource="{Binding SortOptions}"
-                        SelectedItem="{Binding SortOptionsSelectedItem}"
-                        TextColor="{StaticResource DarkerText}"
-                        VerticalOptions="Center" />
-                </StackLayout>
+                    HorizontalOptions="FillAndExpand"
+                    ItemsSource="{Binding SortOptions}"
+                    SelectedItem="{Binding SortOptionsSelectedItem}"
+                    TextColor="{StaticResource WhiteText}"
+                    TitleColor="{StaticResource WhiteText}"
+                    VerticalOptions="CenterAndExpand" />
+
+                <!--  Delete all notes  -->
+                <Button
+                    Grid.Row="1"
+                    BackgroundColor="{StaticResource ErrorRed}"
+                    Command="{Binding DeleteAllNotesCommand}"
+                    FontSize="18"
+                    Text="Delete All Notes"
+                    TextColor="{StaticResource WhiteText}" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

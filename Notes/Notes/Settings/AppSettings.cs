@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -36,17 +37,15 @@ namespace Notes.Settings
 
 		/// <summary>
 		/// Colors for the notes
-		/// 
-		/// Transparent, red, purple, blue, green, yellow
 		/// </summary>
-		public static readonly string[] NoteColors = new string[]
+		public static readonly Hashtable NoteColors = new Hashtable()
 		{
-			"#ffffff00",
-			"#F44336",
-			"#9C27B0",
-			"#2196F3",
-			"#4CAF50",
-			"#FFC107"
+			{ "Transparent", "#ffffff00" },
+			{ "Red", "#F44336" },
+			{ "Purple", "#9C27B0" },
+			{ "Blue", "#2196F3" },
+			{ "Green", "#4CAF50" },
+			{ "Yellow",  "#FFC107" }
 		};
 
 

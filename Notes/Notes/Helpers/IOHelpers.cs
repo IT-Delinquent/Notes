@@ -8,7 +8,7 @@ namespace Notes.Helpers
     /// <summary>
     /// A class for directory and IO related tasks
     /// </summary>
-    public static class SaveAndLoadHelpers
+    public static class IOHelpers
     {
         /// <summary>
         /// Holds the default note file extension
@@ -80,6 +80,17 @@ namespace Notes.Helpers
         public static void DeleteNote(string file)
         {
             File.Delete(file);
+        }
+
+        /// <summary>
+        /// Deletes all the notes
+        /// </summary>
+        public static void DeleteAllNotes()
+        {
+            foreach(string i in EnumerateAllFiles())
+            {
+                File.Delete(i);
+            }
         }
     }
 }
