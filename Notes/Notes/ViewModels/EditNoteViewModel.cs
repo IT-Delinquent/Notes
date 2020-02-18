@@ -1,5 +1,6 @@
 ﻿using Notes.Helpers;
 using Notes.Models;
+using Notes.Settings;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -71,6 +72,11 @@ namespace Notes.ViewModels
         private DateTime _date;
 
         /// <summary>
+        /// Hods the color for the note
+        /// </summary>
+        private Color _color;
+
+        /// <summary>
         /// Holds whether the user can save or delete the note
         /// Changes if the title is empty or note
         /// </summary>
@@ -134,6 +140,19 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
+        /// Accessor ad modifier for the notes color
+        /// </summary>
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                _color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Public save command
         /// </summary>
         public Command SaveCommand
@@ -180,8 +199,9 @@ namespace Notes.ViewModels
             }
 
             string noteData = Title + ':' + Text;
+            string color = (string)AppSettings.NoteColors[Color.ToHex()];
 
-            IOHelpers.SaveNoteData(_note.Filename, noteData);
+            IOHelpers.SaveNoteData(_note.Filename, noteData, color);
 
             await NavigationHelpers.PopCurrentPageAsync();
         }

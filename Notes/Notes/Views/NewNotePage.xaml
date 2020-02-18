@@ -5,34 +5,81 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="New Note"
     BackgroundColor="{StaticResource DarkBlue}">
+    <Grid>
+        <!--  Note color  -->
+        <BoxView
+            BackgroundColor="{Binding Color}"
+            HeightRequest="10"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Start" />
 
-    <StackLayout Margin="20">
+        <!--  Note entry and buttons  -->
+        <StackLayout Margin="20">
 
-        <!--  Title editor  -->
-        <Editor
-            FontSize="Large"
-            MaxLength="20"
-            Placeholder="Enter your title"
-            Text="{Binding Title}" />
+            <!--  Title editor  -->
+            <Editor
+                FontSize="Large"
+                MaxLength="20"
+                Placeholder="Enter your title"
+                Text="{Binding Title}" />
 
-        <!--  Text editor  -->
-        <Editor
-            FontSize="Body"
-            Placeholder="Enter your note"
-            Text="{Binding Text}"
-            VerticalOptions="FillAndExpand" />
+            <!--  Text editor  -->
+            <Editor
+                FontSize="Body"
+                Placeholder="Enter your note"
+                Text="{Binding Text}"
+                VerticalOptions="FillAndExpand" />
 
-        <!--  Save and Cancel buttons  -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Command="{Binding SaveCommand}" Text="Save" />
-            <Button
-                Grid.Column="1"
-                Command="{Binding CancelCommand}"
-                Text="Cancel" />
-        </Grid>
-    </StackLayout>
+            <!--  Color options  -->
+            <StackLayout
+                Margin="5"
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                Spacing="20">
+                <Button
+                    BackgroundColor="{StaticResource None}"
+                    Command="{Binding ColorCommand}"
+                    CommandParameter="None"
+                    Style="{StaticResource NoteColorButton}" />
+                <Button
+                    BackgroundColor="{StaticResource Red}"
+                    Command="{Binding ColorCommand}"
+                    CommandParameter="Red"
+                    Style="{StaticResource NoteColorButton}" />
+                <Button
+                    BackgroundColor="{StaticResource Purple}"
+                    Command="{Binding ColorCommand}"
+                    CommandParameter="Purple"
+                    Style="{StaticResource NoteColorButton}" />
+                <Button
+                    BackgroundColor="{StaticResource Blue}"
+                    Command="{Binding ColorCommand}"
+                    CommandParameter="Blue"
+                    Style="{StaticResource NoteColorButton}" />
+                <Button
+                    BackgroundColor="{StaticResource Green}"
+                    Command="{Binding ColorCommand}"
+                    CommandParameter="Green"
+                    Style="{StaticResource NoteColorButton}" />
+                <Button
+                    BackgroundColor="{StaticResource Yellow}"
+                    Command="{Binding ColorCommand}"
+                    CommandParameter="Yellow"
+                    Style="{StaticResource NoteColorButton}" />
+            </StackLayout>
+
+            <!--  Save and Cancel buttons  -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding SaveCommand}" Text="Save" />
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding CancelCommand}"
+                    Text="Cancel" />
+            </Grid>
+        </StackLayout>
+    </Grid>
 </ContentPage>

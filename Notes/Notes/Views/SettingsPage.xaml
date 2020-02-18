@@ -24,7 +24,7 @@
                     ItemsSource="{Binding SortOptions}"
                     SelectedItem="{Binding SortOptionsSelectedItem}"
                     TextColor="{StaticResource WhiteText}"
-                    TitleColor="{StaticResource WhiteText}"
+                    TitleColor="{StaticResource DarkerText}"
                     VerticalOptions="CenterAndExpand" />
 
                 <!--  Delete all notes  -->

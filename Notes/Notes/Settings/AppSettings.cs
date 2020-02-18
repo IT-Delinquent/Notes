@@ -40,7 +40,7 @@ namespace Notes.Settings
 		/// </summary>
 		public static readonly Hashtable NoteColors = new Hashtable()
 		{
-			{ "Transparent", "#ffffff00" },
+			{ "None", "#00ffff00" },
 			{ "Red", "#F44336" },
 			{ "Purple", "#9C27B0" },
 			{ "Blue", "#2196F3" },

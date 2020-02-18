@@ -43,12 +43,20 @@
                                 <!--  Seperating the image from the text  -->
                                 <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10" />
                                         <ColumnDefinition Width="40" />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
+                                    <!--  Note color  -->
+                                    <BoxView
+                                        BackgroundColor="{Binding Color}"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="StartAndExpand" />
+
                                     <!--  Note image  -->
                                     <Image
+                                        Grid.Column="1"
                                         Margin="2"
                                         HorizontalOptions="CenterAndExpand"
                                         Source="Assets/Images/note.png"
@@ -56,7 +64,7 @@
 
                                     <!--  The title and date  -->
                                     <StackLayout
-                                        Grid.Column="1"
+                                        Grid.Column="2"
                                         HorizontalOptions="Start"
                                         Orientation="Vertical"
                                         VerticalOptions="Start">

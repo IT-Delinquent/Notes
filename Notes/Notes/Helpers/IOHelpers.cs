@@ -58,9 +58,9 @@ namespace Notes.Helpers
         /// </summary>
         /// <param name="file">The location of the note file</param>
         /// <param name="data">The data of the note</param>
-        public static void SaveNoteData(string file, string data)
+        public static void SaveNoteData(string file, string data, string color)
         {
-            File.WriteAllText(file, data);
+            File.WriteAllText(file, data + ":" + color);
         }
 
         /// <summary>

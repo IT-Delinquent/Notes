@@ -76,14 +76,19 @@ namespace Notes.ViewModels
             {
                 string noteData = IOHelpers.ReadAllFileText(fileName);
 
-                int titleLocation = noteData.IndexOf(":");
+                string[] noteParts = noteData.Split(':');
+
+                string title = noteParts[0];
+                string text = noteParts[1];
+                string color = noteParts[2];
 
                 Notes.Add(new Note
                 {
                     Filename = fileName,
-                    Title = noteData.Substring(0, titleLocation),
-                    Text = noteData.Substring(titleLocation + 1),
-                    Date = IOHelpers.GetNoteDate(fileName)
+                    Title = title,
+                    Text = text,
+                    Date = IOHelpers.GetNoteDate(fileName),
+                    Color = Color.FromHex(color)
                 });
             }
 

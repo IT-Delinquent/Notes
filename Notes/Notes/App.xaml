@@ -17,6 +17,14 @@
             <Color x:Key="DarkerText">#a5a5a5</Color>
             <Color x:Key="ErrorRed">#ff4948</Color>
 
+            <!--  Note color buttons  -->
+            <Color x:Key="None">#22272c</Color>
+            <Color x:Key="Red">#F44336</Color>
+            <Color x:Key="Purple">#9C27B0</Color>
+            <Color x:Key="Blue">#2196F3</Color>
+            <Color x:Key="Green">#4CAF50</Color>
+            <Color x:Key="Yellow">#FFC107</Color>
+
             <!--  Styles the nav bar  -->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource MediumBlue}" />
@@ -44,8 +52,16 @@
                 <Setter Property="WidthRequest" Value="70" />
                 <Setter Property="BackgroundColor" Value="{StaticResource MediumBlue}" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderColor" Value="{StaticResource DarkestBlue}" />
                 <Setter Property="BorderWidth" Value="3" />
+            </Style>
+
+            <Style x:Key="NoteColorButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="50" />
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="BorderColor" Value="{StaticResource DarkestBlue}" />
+                <Setter Property="BorderWidth" Value="4" />
             </Style>
 
             <!--  Styles the labels  -->

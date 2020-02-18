@@ -1,4 +1,5 @@
 ﻿using Notes.Helpers;
+using Notes.Settings;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Notes.ViewModels
         {
             CancelCommand = new Command(async () => await CancelAsync());
             SaveCommand = new Command(async () => await SaveAsync(), CanSaveNote);
+            ColorCommand = new Command<string>((x) => ColorChange(x));
         }
 
         #endregion Public methods
@@ -54,6 +56,11 @@ namespace Notes.ViewModels
         /// Holds the text value
         /// </summary>
         private string _text;
+
+        /// <summary>
+        /// Hods the color for the note
+        /// </summary>
+        private Color _color;
 
         #endregion Private backing fields
 
@@ -89,6 +96,19 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
+        /// Accessor ad modifier for the notes color
+        /// </summary>
+        public Color Color
+        {
+            get { return _color; }
+            set
+            {
+                _color = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Public save command
         /// </summary>
         public ICommand SaveCommand { get; }
@@ -97,6 +117,11 @@ namespace Notes.ViewModels
         /// Public cancel command
         /// </summary>
         public ICommand CancelCommand { get; }
+
+        /// <summary>
+        /// Public color command
+        /// </summary>
+        public ICommand ColorCommand { get; }
 
         #endregion Public fields
 
@@ -148,10 +173,17 @@ namespace Notes.ViewModels
 
             string noteData = Title + ':' + Text;
             string fileName = IOHelpers.GetNewFileName();
+            string color = (string)AppSettings.NoteColors[Color.ToHex()];
 
-            IOHelpers.SaveNoteData(fileName, noteData);
+            IOHelpers.SaveNoteData(fileName, noteData, color);
 
             await NavigationHelpers.PopCurrentPageAsync();
+        }
+
+        private void ColorChange(string color)
+        {
+            Color = Color.FromHex((string)AppSettings.NoteColors[color]);
+
         }
 
         #endregion Private methods
