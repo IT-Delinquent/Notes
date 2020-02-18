@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace Notes.ViewModels
 {
@@ -64,6 +65,7 @@ namespace Notes.ViewModels
             SelectedNote = null;
 
             List<string> files = SaveAndLoadHelpers.EnumerateAllFiles();
+            List<Note> _notes = new List<Note>();
 
             Notes?.Clear();
 
@@ -81,6 +83,9 @@ namespace Notes.ViewModels
                     Date = SaveAndLoadHelpers.GetNoteDate(fileName)
                 });
             }
+
+            Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
+
             ShowCorrectView();
             ShowEditButton();
         }
