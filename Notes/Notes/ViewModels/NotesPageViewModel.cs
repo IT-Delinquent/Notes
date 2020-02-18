@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.Linq;
+using Notes.Views;
+using Notes.Settings;
 
 namespace Notes.ViewModels
 {
@@ -54,6 +56,7 @@ namespace Notes.ViewModels
         {
             NewNoteCommand = new Command(async () => await NewNoteAsync());
             EditNoteCommand = new Command(async () => await LoadNoteAsync());
+            SettingsCommand = new Command(async () => await LoadSettingsAsync());
         }
 
         /// <summary>
@@ -84,7 +87,27 @@ namespace Notes.ViewModels
                 });
             }
 
-            Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
+            //Switch to determine how to display the list of notes
+            switch (AppSettings.OrderByOption)
+            {
+                case "Date - Ascending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
+                    break;
+                case "Date - Descending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
+                    break;
+                case "Title - Ascending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Title));
+                    break;
+                case "Title - Discending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Title));
+                    break;
+                default:
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
+                    break;
+            }
+            
+            //Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
 
             ShowCorrectView();
             ShowEditButton();
@@ -190,6 +213,11 @@ namespace Notes.ViewModels
         /// </summary>
         public ICommand EditNoteCommand { get; }
 
+        /// <summary>
+        /// Command for launching the settings
+        /// </summary>
+        public ICommand SettingsCommand { get; }
+
         #endregion Public fields
 
         #region Private methods
@@ -204,7 +232,7 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
-        /// The async task for display the currently selected note
+        /// The async task to display the currently selected note
         /// </summary>
         /// <returns></returns>
         private async Task LoadNoteAsync()
@@ -214,6 +242,15 @@ namespace Notes.ViewModels
                 return;
             }
             await NavigationHelpers.PushPageAsync(new EditNotePage(SelectedNote) { });
+        }
+
+        /// <summary>
+        /// The async task to display the settings page
+        /// </summary>
+        /// <returns></returns>
+        private async Task LoadSettingsAsync()
+        {
+            await NavigationHelpers.PushPageAsync(new SettingsPage { });
         }
 
         /// <summary>

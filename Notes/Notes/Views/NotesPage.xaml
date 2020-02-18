@@ -7,18 +7,27 @@
     Title="Notes"
     BackgroundColor="{StaticResource DarkBlue}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SettingsCommand}" IconImageSource="Assets/Images/settings.png" />
+    </ContentPage.ToolbarItems>
+
     <!--  The "master" grid  -->
-    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <Grid
+        BackgroundColor="Transparent"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand">
 
         <!--  Scroll view for the list  -->
         <ScrollView
             x:Name="listview"
             Margin="10"
+            BackgroundColor="Transparent"
             IsVisible="{Binding NotesListIsVisible}"
             VerticalOptions="FillAndExpand">
 
             <!--  The list containing all the notes  -->
             <ListView
+                BackgroundColor="Transparent"
                 ItemsSource="{Binding Notes}"
                 RowHeight="100"
                 SelectedItem="{Binding SelectedNote, Mode=TwoWay}">

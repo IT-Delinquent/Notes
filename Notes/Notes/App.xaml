@@ -10,7 +10,7 @@
         <ResourceDictionary>
 
             <!--  Colors  -->
-            <Color x:Key="DarkestBlue">#1f2327</Color>
+            <Color x:Key="DarkestBlue">#121517</Color>
             <Color x:Key="DarkBlue">#22272c</Color>
             <Color x:Key="MediumBlue">#41464c</Color>
             <Color x:Key="WhiteText">White</Color>

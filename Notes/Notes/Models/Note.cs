@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Notes.Models
 {
@@ -26,5 +27,10 @@ namespace Notes.Models
         /// The creation time of the note
         /// </summary>
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// The color for the note
+        /// </summary>
+        public Color Color { get; set; }
     }
 }
