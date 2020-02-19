@@ -20,7 +20,8 @@ namespace Notes.Settings
             "Date - Ascending",
             "Date - Descending",
             "Title - Ascending",
-            "Title - Descending"
+            "Title - Descending",
+            "Color"
         };
 
         /// <summary>

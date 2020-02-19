@@ -107,14 +107,9 @@ namespace Notes.ViewModels
                 Notes.Add(_tempNote);
             }
 
-            //Checking if the sort option has changed
-            string _appOrderSettings = AppSettings.OrderByOption;
-            if (_currentSortingOption != _appOrderSettings)
-            {
-                _currentSortingOption = _appOrderSettings;
-                SortNotes();
-                //Switch to determine how to display the list of notes
-            }
+            //sorting the notes
+            _currentSortingOption = AppSettings.OrderByOption;
+            SortNotes();
 
             ShowCorrectView();
             ShowEditButton();
@@ -314,7 +309,10 @@ namespace Notes.ViewModels
                 case "Title - Descending":
                     Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Title));
                     break;
-
+                case "Color":
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Color.ToString())
+                        .ThenBy(x => x.Title));
+                    break;
                 default:
                     Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
                     break;
