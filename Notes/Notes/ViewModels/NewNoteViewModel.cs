@@ -68,7 +68,6 @@ namespace Notes.ViewModels
 
         /// <summary>
         /// Accessor and modifier for the title
-        ///
         /// Also runs ChangeCanExecute for the save command
         /// </summary>
         public string Title
@@ -183,7 +182,7 @@ namespace Notes.ViewModels
         /// <summary>
         /// Used to set the color of the note
         /// </summary>
-        /// <param name="color"></param>
+        /// <param name="color">The color to upda the note to</param>
         private void ColorChange(string color)
         {
             Color = Color.FromHex((string)AppSettings.NoteColors[color]);

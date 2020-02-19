@@ -35,6 +35,25 @@ namespace Notes.ViewModels
 
         #endregion PropertyChanged
 
+        #region Private backing fields
+
+        /// <summary>
+        /// Holds the sort options
+        /// </summary>
+        private ObservableCollection<string> _sortOptions = new ObservableCollection<string>();
+
+        /// <summary>
+        /// Holds the select item for the sort options
+        /// </summary>
+        private string _sortOptionsSelectedItem = AppSettings.OrderByOption;
+
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// The constructor for the class
+        /// </summary>
         public SettingsViewModel()
         {
             foreach (string i in AppSettings.OrderOptions)
@@ -45,31 +64,51 @@ namespace Notes.ViewModels
             DeleteAllNotesCommand = new Command(async () => await DeleteAllNotes());
         }
 
-        private ObservableCollection<string> _sortOptions = new ObservableCollection<string>();
+        #endregion
 
+        #region Public fields
+
+        /// <summary>
+        /// Accessor and modifier for the sort options
+        /// </summary>
         public ObservableCollection<string> SortOptions
         {
             get { return _sortOptions; }
-            set 
-            { 
+            set
+            {
                 _sortOptions = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _sortOptionsSelectedItem = AppSettings.OrderByOption;
-
+        /// <summary>
+        /// Accessor and modifier for the selected sort item
+        /// </summary>
         public string SortOptionsSelectedItem
         {
             get { return _sortOptionsSelectedItem; }
-            set 
-            { 
+            set
+            {
                 _sortOptionsSelectedItem = value;
                 OnPropertyChanged();
                 AppSettings.OrderByOption = SortOptionsSelectedItem;
             }
         }
 
+        /// <summary>
+        /// Command for deleting all the notes in the application
+        /// </summary>
+        public ICommand DeleteAllNotesCommand { get; }
+
+        #endregion
+
+        #region Private methods
+
+        /// <summary>
+        /// The async task for deleting all the notes in the application
+        /// Also asks for validation from the user before deleting
+        /// </summary>
+        /// <returns>A task to delete all the notes</returns>
         private async Task DeleteAllNotes()
         {
             await DisplayPopupHelpers
@@ -101,7 +140,6 @@ namespace Notes.ViewModels
                 "All your notes have now been deleted");
         }
 
-        public ICommand DeleteAllNotesCommand { get; }
-
+        #endregion
     }
 }

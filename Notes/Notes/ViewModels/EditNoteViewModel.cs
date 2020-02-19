@@ -205,7 +205,6 @@ namespace Notes.ViewModels
 
         /// <summary>
         /// The save async method
-        ///
         /// Saves/updates the note and closes the edit note page
         /// </summary>
         /// <returns>A task to save/update the note and close the edit note page</returns>
@@ -229,7 +228,6 @@ namespace Notes.ViewModels
 
         /// <summary>
         /// The delete async method
-        ///
         /// Deletes the current note following validation and closes the note page
         /// </summary>
         /// <returns>A task to delete the current note following validation and close the note page</returns>

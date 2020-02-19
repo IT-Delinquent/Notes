@@ -59,9 +59,9 @@ namespace Notes.ViewModels
         /// </summary>
         public NotesPageViewModel()
         {
-            NewNoteCommand = new Command(async () => await NewNoteAsync());
-            EditNoteCommand = new Command(async () => await LoadNoteAsync());
-            SettingsCommand = new Command(async () => await LoadSettingsAsync());
+            NewNoteCommand = new Command(async () => await ShowNewNoteAsync());
+            EditNoteCommand = new Command(async () => await ShowEditNoteAsync());
+            SettingsCommand = new Command(async () => await ShowSettingsAsync());
         }
 
         /// <summary>
@@ -88,6 +88,9 @@ namespace Notes.ViewModels
                 string[] noteParts = noteData.Split(':');
                 int notePartCount = noteParts.Count();
 
+                //Performs some magic so that the title is the first element in the array
+                //The text is from the second to the second to last element in the array (this preserves the ':')
+                //The color is the final element
                 string title = noteParts[0];
                 string text = string.Join(":", noteParts.Skip(1).Take(notePartCount - 2));
                 string color = noteParts[notePartCount - 1];
@@ -152,8 +155,6 @@ namespace Notes.ViewModels
             }
         }
 
-        //.OrderByDescending(x => x.Date) as ObservableCollection<Note>;
-
         /// <summary>
         /// Public accessor and setter for the currently selected note
         /// </summary>
@@ -208,7 +209,7 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
-        /// Command for lauching a new note
+        /// Command for launching a new note
         /// </summary>
         public ICommand NewNoteCommand { get; }
 
@@ -229,8 +230,8 @@ namespace Notes.ViewModels
         /// <summary>
         /// The async task for displaying a new note
         /// </summary>
-        /// <returns></returns>
-        private async Task NewNoteAsync()
+        /// <returns>A task to show the new note page</returns>
+        private async Task ShowNewNoteAsync()
         {
             await NavigationHelpers.PushPageAsync(new NewNotePage { });
         }
@@ -238,8 +239,8 @@ namespace Notes.ViewModels
         /// <summary>
         /// The async task to display the currently selected note
         /// </summary>
-        /// <returns></returns>
-        private async Task LoadNoteAsync()
+        /// <returns>A task to show the edit note page, passing in the SelectedNote</returns>
+        private async Task ShowEditNoteAsync()
         {
             if (SelectedNote == null)
             {
@@ -251,8 +252,8 @@ namespace Notes.ViewModels
         /// <summary>
         /// The async task to display the settings page
         /// </summary>
-        /// <returns></returns>
-        private async Task LoadSettingsAsync()
+        /// <returns>A task to show the settings page</returns>
+        private async Task ShowSettingsAsync()
         {
             await NavigationHelpers.PushPageAsync(new SettingsPage { });
         }
@@ -277,7 +278,7 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
-        /// Shows the correct button for editing or creating a note
+        /// Decides whether to show the edit button or not
         /// </summary>
         private void ShowEditButton()
         {
