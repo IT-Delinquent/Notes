@@ -21,15 +21,22 @@
                 </Grid.RowDefinitions>
 
                 <!--  Sort notes setter  -->
-                <Picker
-                    Title="Order notes by"
-                    BackgroundColor="{StaticResource DarkestBlue}"
-                    HorizontalOptions="FillAndExpand"
-                    ItemsSource="{Binding SortOptions}"
-                    SelectedItem="{Binding SortOptionsSelectedItem}"
-                    TextColor="{StaticResource WhiteText}"
-                    TitleColor="{StaticResource DarkerText}"
-                    VerticalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        Text="Sort by:"
+                        VerticalOptions="Center" />
+                    <Picker
+                        Title="Order notes by"
+                        BackgroundColor="{StaticResource DarkestBlue}"
+                        HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding SortOptions}"
+                        SelectedItem="{Binding SortOptionsSelectedItem}"
+                        TextColor="{StaticResource WhiteText}"
+                        TitleColor="{StaticResource DarkerText}"
+                        VerticalOptions="CenterAndExpand" />
+                </StackLayout>
 
                 <!--  Delete check switcher  -->
                 <StackLayout Grid.Row="1" Orientation="Horizontal">

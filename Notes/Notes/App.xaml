@@ -50,10 +50,8 @@
                 <Setter Property="CornerRadius" Value="50" />
                 <Setter Property="HeightRequest" Value="70" />
                 <Setter Property="WidthRequest" Value="70" />
-                <Setter Property="BackgroundColor" Value="{StaticResource MediumBlue}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkestBlue}" />
                 <Setter Property="TextColor" Value="White" />
-                <Setter Property="BorderColor" Value="{StaticResource DarkestBlue}" />
-                <Setter Property="BorderWidth" Value="3" />
             </Style>
 
             <!--  Styles for the note color buttons  -->
