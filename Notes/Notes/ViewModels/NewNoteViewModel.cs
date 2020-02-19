@@ -173,17 +173,20 @@ namespace Notes.ViewModels
 
             string noteData = Title + ':' + Text;
             string fileName = IOHelpers.GetNewFileName();
-            string color = (string)AppSettings.NoteColors[Color.ToHex()];
+            string color = Color.ToHex();
 
             IOHelpers.SaveNoteData(fileName, noteData, color);
 
             await NavigationHelpers.PopCurrentPageAsync();
         }
 
+        /// <summary>
+        /// Used to set the color of the note
+        /// </summary>
+        /// <param name="color"></param>
         private void ColorChange(string color)
         {
             Color = Color.FromHex((string)AppSettings.NoteColors[color]);
-
         }
 
         #endregion Private methods

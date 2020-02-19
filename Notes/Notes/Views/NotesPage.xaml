@@ -29,60 +29,70 @@
             <ListView
                 BackgroundColor="Transparent"
                 ItemsSource="{Binding Notes}"
-                RowHeight="100"
+                RowHeight="110"
                 SelectedItem="{Binding SelectedNote, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!--  Frame to give each note a background  -->
-                            <Frame
-                                Margin="5,5,10,5"
-                                BackgroundColor="{StaticResource MediumBlue}"
-                                CornerRadius="6">
+                            <!--  Grid to hold each note  -->
+                            <Grid Margin="5" VerticalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
 
-                                <!--  Seperating the image from the text  -->
-                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10" />
-                                        <ColumnDefinition Width="40" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
+                                <!--  Note content frame  -->
+                                <Frame
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource MediumBlue}"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand">
 
-                                    <!--  Note color  -->
-                                    <BoxView
-                                        BackgroundColor="{Binding Color}"
-                                        HorizontalOptions="Start"
-                                        VerticalOptions="StartAndExpand" />
+                                    <!--  Seperating the image from the text  -->
+                                    <Grid VerticalOptions="Center">
 
-                                    <!--  Note image  -->
-                                    <Image
-                                        Grid.Column="1"
-                                        Margin="2"
-                                        HorizontalOptions="CenterAndExpand"
-                                        Source="Assets/Images/note.png"
-                                        VerticalOptions="CenterAndExpand" />
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
 
-                                    <!--  The title and date  -->
-                                    <StackLayout
-                                        Grid.Column="2"
-                                        HorizontalOptions="Start"
-                                        Orientation="Vertical"
-                                        VerticalOptions="Start">
-                                        <Label
-                                            FontSize="Large"
-                                            HorizontalOptions="FillAndExpand"
-                                            Text="{Binding Title}"
-                                            TextColor="{StaticResource WhiteText}"
-                                            VerticalOptions="Start" />
-                                        <Label
-                                            FontSize="Small"
-                                            HorizontalOptions="Start"
-                                            Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
-                                            TextColor="{StaticResource DarkerText}"
-                                            VerticalOptions="Center" />
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
+                                        <!--  Note image  -->
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Source="Assets/Images/note.png"
+                                            VerticalOptions="CenterAndExpand" />
+
+                                        <!--  The title and date  -->
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            Margin="5"
+                                            HorizontalOptions="StartAndExpand"
+                                            Orientation="Vertical"
+                                            VerticalOptions="Start">
+                                            <Label
+                                                FontSize="Large"
+                                                HorizontalOptions="FillAndExpand"
+                                                Text="{Binding Title}"
+                                                TextColor="{StaticResource WhiteText}"
+                                                VerticalOptions="Start" />
+                                            <Label
+                                                FontSize="Small"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Date, StringFormat='{}{0:dd MMMM}'}"
+                                                TextColor="{StaticResource DarkerText}"
+                                                VerticalOptions="Center" />
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+
+                                <!--  Note color  -->
+                                <BoxView
+                                    Margin="0,0,-6,0"
+                                    BackgroundColor="{Binding Color}"
+                                    CornerRadius="6,0,6,0"
+                                    WidthRequest="10" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

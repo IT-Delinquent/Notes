@@ -45,6 +45,11 @@ namespace Notes.ViewModels
         /// </summary>
         private bool _editNoteButtonIsVisible = false;
 
+        /// <summary>
+        /// Holds the current sorting option for the notes list
+        /// </summary>
+        private string _currentSortingOption;
+
         #endregion Private backing fields
 
         #region public methods
@@ -68,7 +73,6 @@ namespace Notes.ViewModels
             SelectedNote = null;
 
             List<string> files = IOHelpers.EnumerateAllFiles();
-            List<Note> _notes = new List<Note>();
 
             Notes?.Clear();
 
@@ -76,44 +80,39 @@ namespace Notes.ViewModels
             {
                 string noteData = IOHelpers.ReadAllFileText(fileName);
 
+                //Split the note into it's "parts"
+                //The note will have three parts
+                //Title
+                //Text - can have multiple parts
+                //Color
                 string[] noteParts = noteData.Split(':');
+                int notePartCount = noteParts.Count();
 
                 string title = noteParts[0];
-                string text = noteParts[1];
-                string color = noteParts[2];
+                string text = string.Join(":", noteParts.Skip(1).Take(notePartCount - 2));
+                string color = noteParts[notePartCount - 1];
 
-                Notes.Add(new Note
+                Note _tempNote = new Note
                 {
                     Filename = fileName,
                     Title = title,
                     Text = text,
                     Date = IOHelpers.GetNoteDate(fileName),
                     Color = Color.FromHex(color)
-                });
+                };
+
+                Notes.Add(_tempNote);
             }
 
-            //Switch to determine how to display the list of notes
-            switch (AppSettings.OrderByOption)
+            //Checking if the sort option has changed
+            string _appOrderSettings = AppSettings.OrderByOption;
+            if (_currentSortingOption != _appOrderSettings)
             {
-                case "Date - Ascending":
-                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
-                    break;
-                case "Date - Descending":
-                    Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
-                    break;
-                case "Title - Ascending":
-                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Title));
-                    break;
-                case "Title - Discending":
-                    Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Title));
-                    break;
-                default:
-                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
-                    break;
+                _currentSortingOption = _appOrderSettings;
+                SortNotes();
+                //Switch to determine how to display the list of notes
             }
             
-            //Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
-
             ShowCorrectView();
             ShowEditButton();
         }
@@ -289,6 +288,31 @@ namespace Notes.ViewModels
             else
             {
                 EditNoteButtonIsVisible = true;
+            }
+        }
+
+        /// <summary>
+        /// Method to sort the Notes list based on the app settings
+        /// </summary>
+        private void SortNotes()
+        {
+            switch (_currentSortingOption)
+            {
+                case "Date - Ascending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
+                    break;
+                case "Date - Descending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
+                    break;
+                case "Title - Ascending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Title));
+                    break;
+                case "Title - Descending":
+                    Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Title));
+                    break;
+                default:
+                    Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
+                    break;
             }
         }
 

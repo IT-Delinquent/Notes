@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Notes.ViewModels
@@ -22,11 +23,14 @@ namespace Notes.ViewModels
         /// <param name="note"></param>
         public EditNoteViewModel(Note note)
         {
-            _note = note;
+            CurrentNote = note;
 
-            Title = _note.Title;
-            Text = _note.Text;
-            Date = _note.Date;
+            Title = CurrentNote.Title;
+            Text = CurrentNote.Text;
+            Date = CurrentNote.Date;
+            Color = CurrentNote.Color;
+
+            ColorCommand = new Command<string>((x) => ColorChange(x));
         }
 
         #endregion Public methods
@@ -54,7 +58,7 @@ namespace Notes.ViewModels
         /// <summary>
         /// The private note object that holds the currently selected note
         /// </summary>
-        private readonly Note _note = new Note();
+        private Note _currentNote = new Note();
 
         /// <summary>
         /// Holds the title of the note
@@ -95,6 +99,18 @@ namespace Notes.ViewModels
         #endregion Private backing fields
 
         #region Public fields
+
+        /// <summary>
+        /// Accessor for the current note
+        /// </summary>
+        public Note CurrentNote
+        {
+            get { return _currentNote; }
+            set
+            {
+                _currentNote = value;
+            }
+        }
 
         /// <summary>
         /// Accessor and modifier for the title
@@ -178,6 +194,11 @@ namespace Notes.ViewModels
             }
         }
 
+        /// <summary>
+        /// Command for changing the notes color
+        /// </summary>
+        public ICommand ColorCommand { get; }
+
         #endregion Public fields
 
         #region Private methods
@@ -199,9 +220,9 @@ namespace Notes.ViewModels
             }
 
             string noteData = Title + ':' + Text;
-            string color = (string)AppSettings.NoteColors[Color.ToHex()];
+            string color = Color.ToHex();
 
-            IOHelpers.SaveNoteData(_note.Filename, noteData, color);
+            IOHelpers.SaveNoteData(CurrentNote.Filename, noteData, color);
 
             await NavigationHelpers.PopCurrentPageAsync();
         }
@@ -232,9 +253,9 @@ namespace Notes.ViewModels
                 return;
             }
 
-            if (IOHelpers.NoteExists(_note.Filename))
+            if (IOHelpers.NoteExists(CurrentNote.Filename))
             {
-                IOHelpers.DeleteNote(_note.Filename);
+                IOHelpers.DeleteNote(CurrentNote.Filename);
                 await DisplayPopupHelpers
                     .ShowOKDialogAsync("Deleted",
                     "Your note has been deleted");
@@ -264,6 +285,15 @@ namespace Notes.ViewModels
             {
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Used to update/change the notes color
+        /// </summary>
+        /// <param name="color">The color to change to note to</param>
+        private void ColorChange(string color)
+        {
+            Color = Color.FromHex((string)AppSettings.NoteColors[color]);
         }
 
         #endregion Private methods
