@@ -44,7 +44,6 @@
                         FontSize="16"
                         HorizontalOptions="Start"
                         Text="Require check on delete"
-                        TextColor="{StaticResource WhiteText}"
                         VerticalOptions="Center" />
                     <Switch
                         Grid.Row="1"
