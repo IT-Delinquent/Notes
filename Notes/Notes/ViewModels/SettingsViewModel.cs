@@ -1,11 +1,8 @@
 ﻿using Notes.Helpers;
 using Notes.Settings;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -47,7 +44,7 @@ namespace Notes.ViewModels
         /// </summary>
         private string _sortOptionsSelectedItem = AppSettings.OrderByOption;
 
-        #endregion
+        #endregion Private backing fields
 
         #region Public methods
 
@@ -64,7 +61,7 @@ namespace Notes.ViewModels
             DeleteAllNotesCommand = new Command(async () => await DeleteAllNotes());
         }
 
-        #endregion
+        #endregion Public methods
 
         #region Public fields
 
@@ -100,7 +97,7 @@ namespace Notes.ViewModels
         /// </summary>
         public ICommand DeleteAllNotesCommand { get; }
 
-        #endregion
+        #endregion Public fields
 
         #region Private methods
 
@@ -133,13 +130,13 @@ namespace Notes.ViewModels
                 return;
             }
 
-            await Task.Run( () => IOHelpers.DeleteAllNotes());
+            await Task.Run(() => IOHelpers.DeleteAllNotes());
 
             await DisplayPopupHelpers
                 .ShowOKDialogAsync("Deleted",
                 "All your notes have now been deleted");
         }
 
-        #endregion
+        #endregion Private methods
     }
 }

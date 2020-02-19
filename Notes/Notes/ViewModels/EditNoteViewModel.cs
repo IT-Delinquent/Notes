@@ -213,7 +213,7 @@ namespace Notes.ViewModels
             if (Title.Contains(":"))
             {
                 await DisplayPopupHelpers
-                    .ShowOKDialogAsync("Invalid Title", 
+                    .ShowOKDialogAsync("Invalid Title",
                     "Title cannot include special character ':'");
                 return;
             }
@@ -234,7 +234,7 @@ namespace Notes.ViewModels
         private async Task DeleteAsync()
         {
             string promptResult = await DisplayPopupHelpers
-                .ShowPromptAsync("Validation", 
+                .ShowPromptAsync("Validation",
                 "To delete this note, enter it's title");
 
             if (promptResult == null)
@@ -245,7 +245,7 @@ namespace Notes.ViewModels
             if (promptResult != Title)
             {
                 await DisplayPopupHelpers
-                    .ShowOKDialogAsync("Incorrect", 
+                    .ShowOKDialogAsync("Incorrect",
                     "Your note has not been deleted");
 
                 return;
@@ -263,7 +263,6 @@ namespace Notes.ViewModels
                 await DisplayPopupHelpers
                     .ShowOKDialogAsync("Error",
                     "The file could not be found; your note has not been deleted");
-
             }
 
             await NavigationHelpers.PopCurrentPageAsync();

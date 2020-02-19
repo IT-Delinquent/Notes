@@ -87,7 +87,7 @@ namespace Notes.Helpers
         /// </summary>
         public static void DeleteAllNotes()
         {
-            foreach(string i in EnumerateAllFiles())
+            foreach (string i in EnumerateAllFiles())
             {
                 File.Delete(i);
             }

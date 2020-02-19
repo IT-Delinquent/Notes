@@ -1,15 +1,15 @@
 ﻿using Notes.Helpers;
 using Notes.Models;
+using Notes.Settings;
+using Notes.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Linq;
-using Notes.Views;
-using Notes.Settings;
 
 namespace Notes.ViewModels
 {
@@ -115,7 +115,7 @@ namespace Notes.ViewModels
                 SortNotes();
                 //Switch to determine how to display the list of notes
             }
-            
+
             ShowCorrectView();
             ShowEditButton();
         }
@@ -302,15 +302,19 @@ namespace Notes.ViewModels
                 case "Date - Ascending":
                     Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
                     break;
+
                 case "Date - Descending":
                     Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Date));
                     break;
+
                 case "Title - Ascending":
                     Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Title));
                     break;
+
                 case "Title - Descending":
                     Notes = new ObservableCollection<Note>(Notes.OrderByDescending(n => n.Title));
                     break;
+
                 default:
                     Notes = new ObservableCollection<Note>(Notes.OrderBy(n => n.Date));
                     break;
