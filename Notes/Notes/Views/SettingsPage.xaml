@@ -8,7 +8,11 @@
     BackgroundColor="{StaticResource DarkBlue}"
     mc:Ignorable="d">
     <ContentPage.Content>
+
+        <!--  Scroll for the settings  -->
         <ScrollView>
+
+            <!--  Grid containing all settings  -->
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -27,7 +31,7 @@
                     TitleColor="{StaticResource DarkerText}"
                     VerticalOptions="CenterAndExpand" />
 
-                <!--  Delete all notes  -->
+                <!--  Delete all notes button  -->
                 <Button
                     Grid.Row="1"
                     BackgroundColor="{StaticResource ErrorRed}"

@@ -7,7 +7,6 @@
     BackgroundColor="{StaticResource DarkBlue}">
 
     <Grid>
-
         <!--  Note color  -->
         <BoxView
             BackgroundColor="{Binding Color}"

@@ -15,6 +15,9 @@ namespace Notes.Settings
 		/// </summary>
 		private static string _orderByOption = "Date - Ascending";
 
+		/// <summary>
+		/// A list of all the possible sorting options
+		/// </summary>
 		public static readonly string[] OrderOptions = new string[] 
 		{
 			"Date - Ascending",
@@ -47,7 +50,5 @@ namespace Notes.Settings
 			{ "Green", "#4CAF50" },
 			{ "Yellow",  "#FFC107" }
 		};
-
-
 	}
 }

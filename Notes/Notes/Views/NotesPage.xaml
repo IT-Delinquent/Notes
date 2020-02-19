@@ -7,6 +7,7 @@
     Title="Notes"
     BackgroundColor="{StaticResource DarkBlue}">
 
+    <!--  The settings button  -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding SettingsCommand}" IconImageSource="Assets/Images/settings.png" />
     </ContentPage.ToolbarItems>

@@ -56,6 +56,7 @@
                 <Setter Property="BorderWidth" Value="3" />
             </Style>
 
+            <!--  Styles for the note color buttons  -->
             <Style x:Key="NoteColorButton" TargetType="Button">
                 <Setter Property="CornerRadius" Value="50" />
                 <Setter Property="HeightRequest" Value="30" />
