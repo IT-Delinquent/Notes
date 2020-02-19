@@ -44,6 +44,12 @@ namespace Notes.ViewModels
         /// </summary>
         private string _sortOptionsSelectedItem = AppSettings.OrderByOption;
 
+        /// <summary>
+        /// Holds whether the user is required to pass verification
+        /// when deleting a note
+        /// </summary>
+        private bool _requiresDeleteCheck = AppSettings.RequireDeleteCheck;
+
         #endregion Private backing fields
 
         #region Public methods
@@ -93,6 +99,21 @@ namespace Notes.ViewModels
         }
 
         /// <summary>
+        /// Accessor and modifier for whether the user is required to pass verfication
+        /// when deleting a note
+        /// </summary>
+        public bool RequiresDeleteCheck
+        {
+            get { return _requiresDeleteCheck; }
+            set 
+            { 
+                _requiresDeleteCheck = value;
+                OnPropertyChanged();
+                UpdateDeleteCheck();
+            }
+        }
+
+        /// <summary>
         /// Command for deleting all the notes in the application
         /// </summary>
         public ICommand DeleteAllNotesCommand { get; }
@@ -135,6 +156,14 @@ namespace Notes.ViewModels
             await DisplayPopupHelpers
                 .ShowOKDialogAsync("Deleted",
                 "All your notes have now been deleted");
+        }
+
+        /// <summary>
+        /// Updates the delete check bool in AppSettings
+        /// </summary>
+        private void UpdateDeleteCheck()
+        {
+            AppSettings.RequireDeleteCheck = RequiresDeleteCheck;
         }
 
         #endregion Private methods

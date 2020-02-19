@@ -233,22 +233,26 @@ namespace Notes.ViewModels
         /// <returns>A task to delete the current note following validation and close the note page</returns>
         private async Task DeleteAsync()
         {
-            string promptResult = await DisplayPopupHelpers
-                .ShowPromptAsync("Validation",
-                "To delete this note, enter it's title");
-
-            if (promptResult == null)
+            //Bypass the validation check if set by the AppSettings
+            if (AppSettings.RequireDeleteCheck)
             {
-                return;
-            }
+                string promptResult = await DisplayPopupHelpers
+                    .ShowPromptAsync("Validation",
+                    "To delete this note, enter it's title");
 
-            if (promptResult != Title)
-            {
-                await DisplayPopupHelpers
-                    .ShowOKDialogAsync("Incorrect",
-                    "Your note has not been deleted");
+                if (promptResult == null)
+                {
+                    return;
+                }
 
-                return;
+                if (promptResult != Title)
+                {
+                    await DisplayPopupHelpers
+                        .ShowOKDialogAsync("Incorrect",
+                        "Your note has not been deleted");
+
+                    return;
+                }
             }
 
             if (IOHelpers.NoteExists(CurrentNote.Filename))

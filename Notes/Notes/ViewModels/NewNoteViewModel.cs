@@ -23,6 +23,8 @@ namespace Notes.ViewModels
             CancelCommand = new Command(async () => await CancelAsync());
             SaveCommand = new Command(async () => await SaveAsync(), CanSaveNote);
             ColorCommand = new Command<string>((x) => ColorChange(x));
+            //Start the note off with the default color
+            ColorCommand.Execute("None");
         }
 
         #endregion Public methods

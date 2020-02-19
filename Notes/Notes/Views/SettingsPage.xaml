@@ -13,8 +13,9 @@
         <ScrollView>
 
             <!--  Grid containing all settings  -->
-            <Grid Margin="5">
+            <Grid Margin="10" RowSpacing="15">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -22,7 +23,6 @@
                 <!--  Sort notes setter  -->
                 <Picker
                     Title="Order notes by"
-                    Margin="5"
                     BackgroundColor="{StaticResource DarkestBlue}"
                     HorizontalOptions="FillAndExpand"
                     ItemsSource="{Binding SortOptions}"
@@ -31,9 +31,27 @@
                     TitleColor="{StaticResource DarkerText}"
                     VerticalOptions="CenterAndExpand" />
 
+                <!--  Delete check switcher  -->
+                <StackLayout Grid.Row="1" Orientation="Horizontal">
+                    <Label
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        Text="Require check on delete"
+                        TextColor="{StaticResource WhiteText}"
+                        VerticalOptions="Center" />
+                    <Switch
+                        Grid.Row="1"
+                        HorizontalOptions="Start"
+                        IsToggled="{Binding RequiresDeleteCheck, Mode=TwoWay}"
+                        OnColor="{StaticResource Green}"
+                        ThumbColor="{StaticResource MediumBlue}"
+                        VerticalOptions="Center" />
+
+                </StackLayout>
+
                 <!--  Delete all notes button  -->
                 <Button
-                    Grid.Row="1"
+                    Grid.Row="2"
                     BackgroundColor="{StaticResource ErrorRed}"
                     Command="{Binding DeleteAllNotesCommand}"
                     FontSize="18"

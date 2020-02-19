@@ -47,5 +47,23 @@ namespace Notes.Settings
             { "Green", "#4CAF50" },
             { "Yellow",  "#FFC107" }
         };
+
+        /// <summary>
+        /// Holds whether the user is required to pass verification before deleting a note
+        /// </summary>
+        private static bool _requireDeleteCheck = true;
+
+        /// <summary>
+        /// Accessor and modifier for if deletion requires verification
+        /// </summary>
+        public static bool RequireDeleteCheck
+        {
+            get { return _requireDeleteCheck; }
+            set 
+            { 
+                _requireDeleteCheck = value; 
+            }
+        }
+
     }
 }
