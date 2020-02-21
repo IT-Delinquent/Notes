@@ -1,5 +1,6 @@
 # Notes
 ### A small cross-platform app for taking notes
+#### Current version 1.0.0
 
 This is my first ever Xamarin.Forms app, so be nice 😶 It's a simple application for creating, editing and deleting notes. You can also 
 assign a color to your notes... because why not? 🌈
