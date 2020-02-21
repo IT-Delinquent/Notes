@@ -14,7 +14,9 @@ Here are the main "features" of my app:
  - Delete all your notes
  
  Here is a little GIF of my app. Hopefully, I keep this updated but I currently don't know how to maintain version numbers 
- for the app 🤣👶
+ for the app 🤣👶 (Please note that the GIF is laggy because of the emulator 👩‍💻)
+ 
+ ![](https://github.com/IT-Delinquent/Notes/blob/master/NotesGIF.gif)
  
  I still want to add some things to the app, polish it a bit more and make it more efficient. Feel free to take this code and abuse it however
  you see fit 😇
