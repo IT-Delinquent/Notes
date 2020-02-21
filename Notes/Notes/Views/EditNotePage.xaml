@@ -7,15 +7,21 @@
     BackgroundColor="{StaticResource DarkBlue}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <!--  Note color  -->
-        <BoxView
+
+        <Frame
             BackgroundColor="{Binding Color}"
+            HasShadow="True"
             HeightRequest="10"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="Start" />
 
         <!--  Note entry and buttons  -->
-        <StackLayout Margin="20">
+        <StackLayout Grid.Row="1" Margin="5">
 
             <!--  Title editor  -->
             <Editor
